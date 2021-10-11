@@ -1,5 +1,5 @@
 create table project(
-	projectID int,
+	projectID serial,
 	siteID int not null,
 	customerID int not null,
 	startDate date,
@@ -8,7 +8,7 @@ create table project(
 );
 
 create table employee(
-	employeeID int,
+	employeeID serial,
 	empEmailID varchar(30),
 	empAddress text,
 	designation varchar(30),
@@ -36,7 +36,7 @@ create table designedBy(
 );
 
 create table customer(
-	customerID int primary key,
+	customerID serial primary key,
 	customerName varchar(30),
 	cutomerPhno varchar(10),
 	customerEmailID varchar(30),
@@ -54,14 +54,14 @@ create table customerFeedback(
 );
 
 create table design(
-	designID int,
+	designID serial,
 	designCost decimal check (designCost>0),
 	size char check(size IN ('S','M','L')),
 	primary key (designID)
 );
 
 create table room(
-	roomID int,
+	roomID serial,
 	roomName varchar(30) not null,
 	roomSize char check(roomSize IN('S','M','L')),
 	designID int,
@@ -77,7 +77,7 @@ create table hasRoom(
 );
 
 create table product(
-	productID int,
+	productID serial,
 	typeName varchar(30),
 	roomName varchar(30),
 	productCost decimal check(productCost>0),
@@ -94,7 +94,7 @@ create table designIncludesProducts(
 );
 
 create table SiteDetails(
-	siteID int,
+	siteID serial,
 	houseNo varchar(10) not null,
 	street text not null,
 	pincode varchar(6) not null,
@@ -115,7 +115,7 @@ create table payment(
 );
 
 create table contractor(
-	contractorID int,
+	contractorID serial,
 	contractorName varchar(30) not null,
 	typeOfWork varchar(30) not null,
 	contractorEmail varchar(30),
@@ -130,7 +130,7 @@ create table contractorPhNo(
 );
 
 create table works(
-	contractorID int,
+	contractorID serial,
 	projectID int,
 	primary key(contractorID,projectID),
 	FOREIGN KEY(projectID) REFERENCES project(projectID),
@@ -138,7 +138,7 @@ create table works(
 );
 
 create table company(
-	companyID int,
+	companyID serial,
 	companyName varchar(30) not null,
 	companyEmailID varchar(30),
 	companyAddress text,
