@@ -3,7 +3,7 @@ create table project(
 	siteID int not null,
 	customerID int not null,
 	startDate date,
-	estimatedEndDate date,
+	estimatedEndDate date check(estimatedEndDate > startDate),
 	primary key (projectID)
 );
 
