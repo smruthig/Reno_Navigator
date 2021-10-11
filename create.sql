@@ -14,7 +14,7 @@ create table employee(
 	designation varchar(30),
 	salary decimal check (salary > '15000'),
 	dob date check(date_part('year',AGE(CURRENT_DATE,dob))>18),
-	joinDate date,
+	joinDate date check(joinDate > dob),
 	projectID int,
 	primary key (employeeID),
 	FOREIGN KEY(projectID) REFERENCES project(projectID)

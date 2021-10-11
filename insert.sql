@@ -1,0 +1,21 @@
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (1, 1, '2020/11/05', '2023/04/01');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (2, 2, '2021/03/13', '2022/02/06');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (3, 3, '2021/10/07', '2023/01/22');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (4, 4, '2020/10/11', '2023/05/23');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (5, 5, '2021/01/16', '2023/08/17');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (6, 6, '2021/05/27', '2022/01/31');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (7, 7, '2021/05/29', '2023/08/26');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (8, 8, '2021/04/03', '2023/06/15');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (9, 9, '2021/03/26', '2022/12/01');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (10, 10, '2021/08/01', '2023/07/13');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (11, 11, '2021/07/18', '2022/11/12');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (12, 12, '2021/03/23', '2022/07/03');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (13, 13, '2021/03/12', '2022/11/17');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (14, 14, '2021/08/11', '2022/10/31');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (15, 15, '2020/12/16', '2022/09/25');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (16, 16, '2021/08/08', '2022/02/18');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (17, 17, '2020/11/03', '2022/03/02');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (18, 18, '2020/11/14', '2023/04/16');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (19, 19, '2021/08/24', '2022/09/26');
+insert into project (siteID, customerID, startDate, estimatedEndDate) values (20, 20, '2021/03/26', '2022/05/26');
+
