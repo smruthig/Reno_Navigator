@@ -93,7 +93,7 @@ create table designIncludesProducts(
 	FOREIGN KEY(productID) REFERENCES product(productID)
 );
 
-create table SiteDetails(
+create table siteDetails(
 	siteID serial,
 	houseNo varchar(10) not null,
 	street text not null,
