@@ -107,7 +107,7 @@ create table siteDetails(
 
 create table payment(
 	costPrice decimal check(costPrice>0),
-	sellingPrice decimal check(sellingPrice>0 and sellingPrice > costPrice),
+	sellingPrice decimal check(sellingPrice>0 and sellingPrice-15000 >= costPrice),
 	advancePaid decimal check(advancePaid< sellingPrice),
 	profit decimal check(profit > 0),
 	projectId int not null,
