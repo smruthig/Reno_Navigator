@@ -107,9 +107,9 @@ create table siteDetails(
 
 create table payment(
 	costPrice decimal check(costPrice>0),
-	sellingPrice decimal check(sellingPrice>0),
-	advancePaid decimal check(advancePaid<=sellingPrice),
-	profit decimal,
+	sellingPrice decimal check(sellingPrice>0 and sellingPrice > costPrice),
+	advancePaid decimal check(advancePaid< sellingPrice),
+	profit decimal check(profit > 0),
 	projectId int not null,
 	FOREIGN KEY(projectID) REFERENCES project(projectID)
 );
