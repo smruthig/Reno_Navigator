@@ -38,7 +38,7 @@ create table designedBy(
 create table customer(
 	customerID serial primary key,
 	customerName varchar(30),
-	cutomerPhno varchar(10),
+	customerPhNo varchar(10),
 	customerEmailID varchar(30),
 	customerAddress text
 );
@@ -93,7 +93,7 @@ create table designIncludesProducts(
 	FOREIGN KEY(productID) REFERENCES product(productID)
 );
 
-create table SiteDetails(
+create table siteDetails(
 	siteID serial,
 	houseNo varchar(10) not null,
 	street text not null,
@@ -107,9 +107,9 @@ create table SiteDetails(
 
 create table payment(
 	costPrice decimal check(costPrice>0),
-	sellingPrice decimal check(sellingPrice>0),
-	advancePaid decimal check(advancePaid<=sellingPrice),
-	profit decimal,
+	sellingPrice decimal check(sellingPrice>0 and sellingPrice-15000 >= costPrice),
+	advancePaid decimal check(advancePaid< sellingPrice),
+	profit decimal check(profit > 0),
 	projectId int not null,
 	FOREIGN KEY(projectID) REFERENCES project(projectID)
 );
@@ -124,13 +124,13 @@ create table contractor(
 
 create table contractorPhNo(
 	contractorID int,
-	contractorPhNo varchar(10) unique,
+	contractorPhNo varchar(12) unique,
 	primary key(contractorID,contractorPhNo),
 	FOREIGN KEY(contractorID) REFERENCES contractor(contractorID)
 );
 
 create table works(
-	contractorID serial,
+	contractorID int,
 	projectID int,
 	primary key(contractorID,projectID),
 	FOREIGN KEY(projectID) REFERENCES project(projectID),
@@ -147,7 +147,7 @@ create table company(
 
 create table companyPhNo(
 	companyID int,
-	companyPhNo varchar(10) unique,
+	companyPhNo varchar(12) unique,
 	primary key (companyID,companyPhNo),
 	FOREIGN KEY(companyID) REFERENCES company(companyID)
 );
