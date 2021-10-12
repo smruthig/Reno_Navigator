@@ -38,7 +38,7 @@ create table designedBy(
 create table customer(
 	customerID serial primary key,
 	customerName varchar(30),
-	cutomerPhno varchar(10),
+	customerPhNo varchar(10),
 	customerEmailID varchar(30),
 	customerAddress text
 );
@@ -124,13 +124,13 @@ create table contractor(
 
 create table contractorPhNo(
 	contractorID int,
-	contractorPhNo varchar(10) unique,
+	contractorPhNo varchar(12) unique,
 	primary key(contractorID,contractorPhNo),
 	FOREIGN KEY(contractorID) REFERENCES contractor(contractorID)
 );
 
 create table works(
-	contractorID serial,
+	contractorID int,
 	projectID int,
 	primary key(contractorID,projectID),
 	FOREIGN KEY(projectID) REFERENCES project(projectID),
@@ -147,7 +147,7 @@ create table company(
 
 create table companyPhNo(
 	companyID int,
-	companyPhNo varchar(10) unique,
+	companyPhNo varchar(12) unique,
 	primary key (companyID,companyPhNo),
 	FOREIGN KEY(companyID) REFERENCES company(companyID)
 );
