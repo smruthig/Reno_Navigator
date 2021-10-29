@@ -17,7 +17,7 @@ create table employee(
 	joinDate date check(joinDate > dob),
 	projectID int,
 	primary key (employeeID),
-	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE NULL ON UPDATE CASCADE
+	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 create table empPhNo(
@@ -50,7 +50,7 @@ create table customerFeedback(
 	feedbackDate date,
 	rating numeric(1) check (rating>=1 and rating<=5),
 	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(customerID) REFERENCES customer(customerID) ON DELETE NULL ON UPDATE CASCADE
+	FOREIGN KEY(customerID) REFERENCES customer(customerID) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 create table design(
@@ -68,7 +68,7 @@ create table room(
 	roomSize char check(roomSize IN('S','M','L')),
 	designID int,
 	primary key (roomID),
-	FOREIGN KEY(designID) REFERENCES design(designID) ON DELETE NULL ON UPDATE CASCADE
+	FOREIGN KEY(designID) REFERENCES design(designID) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- maps rooms and a project
@@ -160,11 +160,11 @@ create table companyPhNo(
 create table sells(
 	companyID int,
 	productID int,
-	primary key (companyID,productID) ON DELETE CASCADE ON UPDATE CASCADE
+	primary key (companyID,productID)
 );
 
 alter table project
 ADD FOREIGN KEY(siteID) REFERENCES SiteDetails(siteID) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 alter table project
-ADD FOREIGN KEY(customerID) REFERENCES customer(customerID) ON DELETE NULL ON UPDATE CASCADE;
+ADD FOREIGN KEY(customerID) REFERENCES customer(customerID) ON DELETE SET NULL ON UPDATE CASCADE;
