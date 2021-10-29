@@ -60,7 +60,7 @@ create table design(
 	primary key (designID)
 );
 
--- details of a specific room in a house for a project
+-- details of a specific room in a house for designs per project
 create table room(
 	roomID serial,
 	-- kitchen, hall, bathroom
