@@ -17,22 +17,22 @@ create table employee(
 	joinDate date check(joinDate > dob),
 	projectID int,
 	primary key (employeeID),
-	FOREIGN KEY(projectID) REFERENCES project(projectID)
+	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE NULL ON UPDATE CASCADE
 );
 
 create table empPhNo(
 	employeeID int,
 	empPhNo varchar(10) unique,
 	primary key(employeeID,empPhNo),
-	FOREIGN KEY(employeeID) REFERENCES employee(employeeID)
+	FOREIGN KEY(employeeID) REFERENCES employee(employeeID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table designedBy(
 	projectID int,
 	employeeID int,
 	primary key(projectID,employeeID),
-	FOREIGN KEY(projectID) REFERENCES project(projectID),
-	FOREIGN KEY(employeeID) REFERENCES employee(employeeID)
+	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(employeeID) REFERENCES employee(employeeID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table customer(
@@ -49,8 +49,8 @@ create table customerFeedback(
 	feedback text,
 	feedbackDate date,
 	rating numeric(1) check (rating>=1 and rating<=5),
-	FOREIGN KEY(projectID) REFERENCES project(projectID),
-	FOREIGN KEY(customerID) REFERENCES customer(customerID)
+	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(customerID) REFERENCES customer(customerID) ON DELETE NULL ON UPDATE CASCADE
 );
 
 create table design(
@@ -60,37 +60,42 @@ create table design(
 	primary key (designID)
 );
 
+-- details of a specific room in a house for a project
 create table room(
 	roomID serial,
+	-- kitchen, hall, bathroom
 	roomName varchar(30) not null,
 	roomSize char check(roomSize IN('S','M','L')),
 	designID int,
 	primary key (roomID),
-	FOREIGN KEY(designID) REFERENCES design(designID)
+	FOREIGN KEY(designID) REFERENCES design(designID) ON DELETE NULL ON UPDATE CASCADE
 );
 
+-- maps rooms and a project
 create table hasRoom(
 	projectID int,
 	roomID int,
-	FOREIGN KEY(projectID) REFERENCES project(projectID),
-	FOREIGN KEY(roomID) REFERENCES room(roomID)
+	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(roomID) REFERENCES room(roomID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table product(
 	productID serial,
 	typeName varchar(30),
+	-- for which room is this product
 	roomName varchar(30),
 	productCost decimal check(productCost>0),
 	description text not null,
 	primary key (productID)
 );
 
+-- list of products used in a design
 create table designIncludesProducts(
 	designID int,
 	productID int,
 	primary key (designID,productID),
-	FOREIGN KEY(designID) REFERENCES design(designID),
-	FOREIGN KEY(productID) REFERENCES product(productID)
+	FOREIGN KEY(designID) REFERENCES design(designID) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(productID) REFERENCES product(productID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table siteDetails(
@@ -111,7 +116,7 @@ create table payment(
 	advancePaid decimal check(advancePaid< sellingPrice),
 	profit decimal check(profit > 0),
 	projectId int not null,
-	FOREIGN KEY(projectID) REFERENCES project(projectID)
+	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table contractor(
@@ -126,15 +131,15 @@ create table contractorPhNo(
 	contractorID int,
 	contractorPhNo varchar(12) unique,
 	primary key(contractorID,contractorPhNo),
-	FOREIGN KEY(contractorID) REFERENCES contractor(contractorID)
+	FOREIGN KEY(contractorID) REFERENCES contractor(contractorID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table works(
 	contractorID int,
 	projectID int,
 	primary key(contractorID,projectID),
-	FOREIGN KEY(projectID) REFERENCES project(projectID),
-	FOREIGN KEY(contractorID) REFERENCES contractor(contractorID)
+	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(contractorID) REFERENCES contractor(contractorID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table company(
@@ -149,17 +154,17 @@ create table companyPhNo(
 	companyID int,
 	companyPhNo varchar(12) unique,
 	primary key (companyID,companyPhNo),
-	FOREIGN KEY(companyID) REFERENCES company(companyID)
+	FOREIGN KEY(companyID) REFERENCES company(companyID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table sells(
 	companyID int,
 	productID int,
-	primary key (companyID,productID)
+	primary key (companyID,productID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 alter table project
-ADD FOREIGN KEY(siteID) REFERENCES SiteDetails(siteID); 
+ADD FOREIGN KEY(siteID) REFERENCES SiteDetails(siteID) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 alter table project
-ADD FOREIGN KEY(customerID) REFERENCES customer(customerID); 
+ADD FOREIGN KEY(customerID) REFERENCES customer(customerID) ON DELETE NULL ON UPDATE CASCADE;
