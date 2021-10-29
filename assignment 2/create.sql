@@ -53,10 +53,10 @@ create table customerFeedback(
 	FOREIGN KEY(customerID) REFERENCES customer(customerID) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
+-- design for a room
 create table design(
 	designID serial,
 	designCost decimal check (designCost>0),
-	size char check(size IN ('S','M','L')),
 	primary key (designID)
 );
 
@@ -112,7 +112,7 @@ create table siteDetails(
 
 create table payment(
 	costPrice decimal check(costPrice>0),
-	sellingPrice decimal check(sellingPrice>0 and sellingPrice-15000 >= costPrice),
+	sellingPrice decimal check(sellingPrice>0 and 0.15*costPrice <= sellingPrice - costPrice),
 	advancePaid decimal check(advancePaid< sellingPrice),
 	profit decimal check(profit > 0),
 	projectId int not null,
