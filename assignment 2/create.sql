@@ -53,14 +53,15 @@ create table customerFeedback(
 	FOREIGN KEY(customerID) REFERENCES customer(customerID) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
--- design for a room
+-- project has many rooms, for each room a customer selects a design
+-- design for a specific room,
 create table design(
 	designID serial,
 	designCost decimal check (designCost>0),
 	primary key (designID)
 );
 
--- details of a specific room in a house for designs per project
+-- details of a room like a large kitchen, small bathroom etc specific to a project[See next table]
 create table room(
 	roomID serial,
 	-- kitchen, hall, bathroom
@@ -142,6 +143,7 @@ create table works(
 	FOREIGN KEY(contractorID) REFERENCES contractor(contractorID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+-- company sells products
 create table company(
 	companyID serial,
 	companyName varchar(30) not null,
@@ -157,6 +159,7 @@ create table companyPhNo(
 	FOREIGN KEY(companyID) REFERENCES company(companyID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+-- details of which company sells which product
 create table sells(
 	companyID int,
 	productID int,
