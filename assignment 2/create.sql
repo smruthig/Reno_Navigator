@@ -23,13 +23,7 @@ create table employee(
 create table managedBy(
 	projectID int,
 	employeeID int,
-	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE
-	FOREIGN KEY(employeeID) REFERENCES employee(employeeID) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-create table designedBy(
-	projectID int,
-	employeeID int,
+	primary key(projectID,employeeID),
 	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE
 	FOREIGN KEY(employeeID) REFERENCES employee(employeeID) ON DELETE CASCADE ON UPDATE CASCADE
 );
