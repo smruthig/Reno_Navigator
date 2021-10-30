@@ -1,0 +1,44 @@
+# 3 users
+1. employee
+2. admin
+3. company manager
+
+## Employee
+1. Project manager
+	1. List of his/her projects(+ button)
+		1. Details of the project like site details
+		2. Customer details
+		3. Rooms with their designs(+ button)
+			1. Products in every design
+		5. List of contractors working for the project(+ button)
+		6. List of designers working on the project(+ button)
+		7. See customer feedbacks
+
+2. Designer
+	1. List of his/her projects(+ button)
+		1. Details of the project like site details 
+		2. Rooms with their designs(+ button)
+			1. Products in every design
+
+3. Admin
+	1. List of all projects(+ button)
+		1. Details of the project like site details
+		2. Customer details
+		3. Rooms with their designs(+ button)
+			1. Products in every design
+		5. List of contractors working for the project(+ button)
+		6. List of designers working on the project(+ button)
+	2. List of all products & company details(+ button)
+	3. See all customer feedbacks
+	4. Payment details per project
+
+4. Company manager
+	1. List of all products(+ button)
+		1. List of companies which sell a particular product(+ button)
+	2. List of all customers and their feedback
+
+5. Accountant
+	1. List of projects
+		1. Customer details
+		2. Payment details(+ button)
+	2. Overall company revenue

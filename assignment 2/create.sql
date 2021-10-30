@@ -20,6 +20,20 @@ create table employee(
 	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
+create table managedBy(
+	projectID int,
+	employeeID int,
+	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(employeeID) REFERENCES employee(employeeID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+create table designedBy(
+	projectID int,
+	employeeID int,
+	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(employeeID) REFERENCES employee(employeeID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 create table empPhNo(
 	employeeID int,
 	empPhNo varchar(10) unique,
