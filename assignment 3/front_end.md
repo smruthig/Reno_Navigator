@@ -35,10 +35,49 @@
 4. Company manager
 	1. List of all products(+ button)
 		1. List of companies which sell a particular product(+ button)
-	2. List of all customers and their feedback
 
 5. Accountant
 	1. List of projects
 		1. Customer details
 		2. Payment details(+ button)
 	2. Overall company revenue
+
+1. Project manager
+	project
+	employee
+	managedBy
+	empPhNo
+	designedBy
+	customer
+	customerFeedback
+	design
+	room
+	hasRoom
+	product
+	designIncludesProducts
+	siteDetails
+	contractor
+	contractorPhNo
+	works
+
+2. Designer
+	project
+	siteDetails
+	design
+	room
+	hasRoom
+	product
+	designIncludesProducts
+
+3. Admin
+
+4. Company manager
+	product
+	company
+	companyPhNo
+	sells
+
+5. Accountant
+	project
+	customer
+	payment
