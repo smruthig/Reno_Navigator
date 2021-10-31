@@ -24,7 +24,7 @@ create table managedBy(
 	projectID int,
 	employeeID int,
 	primary key(projectID,employeeID),
-	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(employeeID) REFERENCES employee(employeeID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -121,7 +121,8 @@ create table siteDetails(
 
 create table payment(
 	costPrice decimal check(costPrice>0),
-	sellingPrice decimal check(sellingPrice>0 and 0.15*costPrice <= sellingPrice - costPrice),
+	-- removed minimum profit percentage as products could be sold at loss
+	sellingPrice decimal check(sellingPrice>0 and costPrice>0),
 	advancePaid decimal check(advancePaid< sellingPrice),
 	profit decimal check(profit > 0),
 	projectId int not null,

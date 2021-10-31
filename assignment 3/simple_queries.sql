@@ -10,7 +10,7 @@
 	AND dip.designID = d.designID
 	AND prod.productID = dip.productID;
 
-	//Or do we need to split this into 3 different queries?
+	-- Or do we need to split this into 3 different queries?
 	
 -- 2. PROJECT MANAGER
 --a.
