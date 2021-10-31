@@ -3,7 +3,7 @@
 	design AS d, room AS r, hasRoom AS hr, designIncludesProducts AS dip,
 	product AS prod
 	WHERE des.projectID = proj.projectID
-	AND proj.siteID = site.siteDetails
+	AND proj.siteID = site.siteID
 	AND hr.projectID = proj.projectID
 	AND hr.roomID = r.roomID 
 	AND r.designID = d.designID

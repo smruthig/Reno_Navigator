@@ -142,6 +142,27 @@ insert into designedBy (projectID, employeeID) values (17, 18);
 insert into designedBy (projectID, employeeID) values (19, 19);
 insert into designedBy (projectID, employeeID) values (20, 20);
 
+insert into managedBy (projectID, employeeID) values (1, 5);
+insert into managedBy (projectID, employeeID) values (2, 6);
+insert into managedBy (projectID, employeeID) values (3, 6);
+insert into managedBy (projectID, employeeID) values (5, 10);
+insert into managedBy (projectID, employeeID) values (7, 8);
+insert into managedBy (projectID, employeeID) values (8, 7);
+insert into managedBy (projectID, employeeID) values (8, 10);
+insert into managedBy (projectID, employeeID) values (8, 6);
+insert into managedBy (projectID, employeeID) values (9, 6);
+insert into managedBy (projectID, employeeID) values (9, 5);
+insert into managedBy (projectID, employeeID) values (9, 7);
+insert into managedBy (projectID, employeeID) values (9, 7);
+insert into managedBy (projectID, employeeID) values (11, 8);
+insert into managedBy (projectID, employeeID) values (13, 8);
+insert into managedBy (projectID, employeeID) values (14, 6);
+insert into managedBy (projectID, employeeID) values (15, 10);
+insert into managedBy (projectID, employeeID) values (16, 9);
+insert into managedBy (projectID, employeeID) values (17, 9);
+insert into managedBy (projectID, employeeID) values (19, 10);
+insert into managedBy (projectID, employeeID) values (20, 5);
+
 insert into customerFeedback (customerID, projectID, feedback, feedbackDate, rating) values (12, 11, 'Satisfied', '2020/10/25', 4.2);
 insert into customerFeedback (customerID, projectID, feedback, feedbackDate, rating) values (13, 10, 'totally worth it', '2020/12/17', 2.7);
 insert into customerFeedback (customerID, projectID, feedback, feedbackDate, rating) values (4, 7, 'Expensive furnishing', '2020/12/18', 3.2);
