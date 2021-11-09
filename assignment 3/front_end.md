@@ -42,6 +42,13 @@
 		2. Payment details(+ button)
 	2. Overall company revenue
 
+
+
+
+
+
+
+
 1. Project manager
 	project
 	employee
@@ -54,6 +61,7 @@
 	room
 	hasRoom
 	product
+		can't update productCost
 	designIncludesProducts
 	siteDetails
 	contractor
@@ -68,6 +76,8 @@
 	hasRoom
 	product
 	designIncludesProducts
+	customer
+		select, update(phNo,customerEmailID)
 
 3. Admin
 
@@ -81,3 +91,5 @@
 	project
 	customer
 	payment
+	product
+		select(productID, productCost) update(productCost)
