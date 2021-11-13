@@ -6,7 +6,6 @@ from psycopg2.extras import RealDictCursor
 import json
 
 app = Flask(__name__)
-
 CORS(app)
 
 try:
@@ -22,12 +21,22 @@ def index():
 
 @app.route('/login', methods=['POST'])
 def login():
-	if request.method == 'POST':
+	try:
 		data = request.json
-		employee_id, password = itemgetter('employeeId','password')(data)
-		cursor.execute("SELECT empemailid, empaddress FROM employee WHERE employeeid=%s",employee_id)
-		x = json.dumps(cursor.fetchone())
-		return Response(x)
+		email_id, password = itemgetter('emailId','password')(data)
+		password = data['password']
+		cursor.execute(f"SELECT emailid, password FROM useraccount WHERE emailid=\'{email_id}\'")
+		res = cursor.fetchone()
+		if res:
+			# resjson = json.dumps(res,indent=4, sort_keys=True, default=str)
+			if res["password"] == password:
+				return Response(status=200)
+			else:
+				return Response(status=401)
+		else:
+			return Response(status=404)
+	except:
+		return Response(status=500)
 
 if __name__ == '__main__':
 	app.debug = True
