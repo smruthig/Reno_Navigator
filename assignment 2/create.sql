@@ -182,7 +182,7 @@ alter table project
 ADD FOREIGN KEY(customerID) REFERENCES customer(customerID) ON DELETE SET NULL ON UPDATE CASCADE;
 
 create table useraccount(
-	employeeID int,
+	emailID varchar(30),
 	password varchar(30),
-	FOREIGN KEY(employeeID) references employee(employeeID) ON DELETE CASCADE ON UPDATE CASCADE
+	primary key(emailID)
 )

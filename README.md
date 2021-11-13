@@ -19,3 +19,6 @@ run ```yarn add <package_name>```
 - ```pipenv shell```
 - run ```python3 app.py```
 - visit http://localhost:5000/
+
+### To add packages to flask-app
+run ```pipenv install <package_name>```
