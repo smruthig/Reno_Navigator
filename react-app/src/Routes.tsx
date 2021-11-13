@@ -6,6 +6,7 @@ export default function Routes()
 		<Router>
 			<Switch>
 				<Route path='/' element={<Login/>}/>
+				<Route path='/success' element={<h1>Success!!</h1>}/>
 			</Switch>
 		</Router>
 	);
