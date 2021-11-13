@@ -1,4 +1,4 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, jsonify
 from flask_cors import CORS
 from operator import itemgetter
 import psycopg2
@@ -30,11 +30,13 @@ def login():
 		if res:
 			# resjson = json.dumps(res,indent=4, sort_keys=True, default=str)
 			if res["password"] == password:
-				return Response(status=200)
+				cursor.execute(f"SELECT employeeid FROM employee WHERE empemailid=\'{email_id}\'")	
+				res = cursor.fetchone()
+				return jsonify(message="success",employeeId=res["employeeid"])
 			else:
-				return Response(status=401)
+				return jsonify(message="incorrect password")
 		else:
-			return Response(status=404)
+			return jsonify(message="no user")
 	except:
 		return Response(status=500)
 
