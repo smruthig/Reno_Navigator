@@ -180,3 +180,9 @@ ADD FOREIGN KEY(siteID) REFERENCES SiteDetails(siteID) ON DELETE RESTRICT ON UPD
 
 alter table project
 ADD FOREIGN KEY(customerID) REFERENCES customer(customerID) ON DELETE SET NULL ON UPDATE CASCADE;
+
+create table useraccount(
+	employeeID int,
+	password varchar(30),
+	FOREIGN KEY(employeeID) references employee(employeeID) ON DELETE CASCADE ON UPDATE CASCADE
+)

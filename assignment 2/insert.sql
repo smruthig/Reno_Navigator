@@ -153,7 +153,6 @@ insert into managedBy (projectID, employeeID) values (8, 6);
 insert into managedBy (projectID, employeeID) values (9, 6);
 insert into managedBy (projectID, employeeID) values (9, 5);
 insert into managedBy (projectID, employeeID) values (9, 7);
-insert into managedBy (projectID, employeeID) values (9, 7);
 insert into managedBy (projectID, employeeID) values (11, 8);
 insert into managedBy (projectID, employeeID) values (13, 8);
 insert into managedBy (projectID, employeeID) values (14, 6);
