@@ -6,7 +6,6 @@ export default function Routes()
 		<Router>
 			<Switch>
 				<Route path='/' element={<Login/>}/>
-				<Route path='/hello'/>
 			</Switch>
 		</Router>
 	);
