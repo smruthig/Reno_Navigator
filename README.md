@@ -15,7 +15,7 @@ run ```yarn add <package_name>```
 ## Set up flask-app
 - first ```cd flask-app```
 - install pipenv using ```pip install pipenv```
-- ```pipenv shell```
 - ```pipenv install``` -> installs all dependencies
+- ```pipenv shell```
 - run ```python3 app.py```
 - visit http://localhost:5000/
