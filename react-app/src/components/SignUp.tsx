@@ -3,8 +3,10 @@ import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Box, Heading } from "@chakra-ui/layout";
 import { NumberInput, NumberInputField, Select } from "@chakra-ui/react";
+import { AxiosResponse } from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import axios from "../utils/axios";
 
 interface SignUpFormProps {
   emailId: string;
@@ -18,6 +20,7 @@ export const SignUp: React.FC = () => {
   const navigate = useNavigate();
   async function onSubmit(formdata: any) {
     console.log(formdata);
+    const {data}: AxiosResponse = await axios.post("/signup", formdata);
   }
 
   return (
