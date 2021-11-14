@@ -1,15 +1,8 @@
-from flask import Blueprint, request, jsonify, Response
+from flask import Blueprint, request, jsonify, Response, g
 from operator import itemgetter
-from utils.postgres import psql_pool
-import psycopg2
 from psycopg2.extras import RealDictCursor
 
 login_blueprint = Blueprint('login', __name__)
-
-try:
-	conn = psql_pool.getconn()
-except (Exception, psycopg2.Error) as error:
-	print("Could not connect to PostgreSQL database:", error)
 
 @login_blueprint.route('/login',methods=['POST'])
 def login():
@@ -18,7 +11,7 @@ def login():
 		email_id, password = itemgetter('emailId','password')(data)
 		password = data['password']
 
-		cursor = conn.cursor(cursor_factory=RealDictCursor)
+		cursor = g.db.cursor(cursor_factory=RealDictCursor)
 
 		cursor.execute(f"SELECT emailid, password FROM useraccount WHERE emailid=\'{email_id}\'")
 
@@ -38,3 +31,10 @@ def login():
 		return Response(status=500)
 	finally:
 		cursor.close()
+
+# function called before request is closed
+@login_blueprint.teardown_app_request
+def teardown_db(exception):
+    db = g.pop('db', None)
+    if db is not None:
+        db.close()

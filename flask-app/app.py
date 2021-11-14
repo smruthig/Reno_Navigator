@@ -1,17 +1,20 @@
-from flask import Flask 
+from flask import Flask, g
 from flask_cors import CORS
 from routes.login import login_blueprint
-from utils.postgres import psql_pool
 import psycopg2
 
 app = Flask(__name__)
 # handling CORS
 CORS(app)
 
-try:
-	conn = psql_pool.getconn()
-except (Exception, psycopg2.Error) as error:
-	print("Could not connect to PostgreSQL database:", error)
+# called before any request is sent
+@app.before_request
+def create_connection():
+	try:
+		if 'db' not in g:
+			g.db = psycopg2.connect(dbname="hd",user="postgres",host="127.0.0.1")
+	except (Exception, psycopg2.Error) as error:
+		print("Could not create connection:", error)
 
 @app.route('/')
 def index():
@@ -20,9 +23,13 @@ def index():
 # sub route for /login
 app.register_blueprint(login_blueprint)
 
+# function called before request is closed
+@app.teardown_appcontext
+def teardown_db(exception):
+	db = g.pop('db', None)
+	if db is not None:
+		db.close()
+
 if __name__ == '__main__':
 	app.debug = True
 	app.run()
-	# closing all connection and connection pool as cleanup step
-	psql_pool.putconn(conn)
-	psql_pool.closeall()
