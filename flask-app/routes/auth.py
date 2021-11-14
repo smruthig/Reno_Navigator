@@ -1,15 +1,15 @@
 from flask import Blueprint, request, jsonify, Response, g
 from operator import itemgetter
 from psycopg2.extras import RealDictCursor
+import psycopg2
 
-login_blueprint = Blueprint('login', __name__)
+auth_blueprint = Blueprint('auth', __name__)
 
-@login_blueprint.route('/login',methods=['POST'])
+@auth_blueprint.route('/login',methods=['POST'])
 def login():
 	try:
 		data = request.json
 		email_id, password = itemgetter('emailId','password')(data)
-		password = data['password']
 
 		cursor = g.db.cursor(cursor_factory=RealDictCursor)
 
@@ -27,13 +27,34 @@ def login():
 				return jsonify(message="incorrect password")
 		else:
 			return jsonify(message="no user")
-	except:
+	except(Exception, psycopg2.Error) as error:
+		print(error)
+		return Response(status=500)
+	finally:
+		cursor.close()
+
+@auth_blueprint.route('/signup',methods=['POST'])
+def signup():
+	try:
+		data = request.json
+		email_id, password, address, designation, salary  = itemgetter('emailId','password','address','designation','salary')(data)
+		salary = float(salary)
+		cursor = g.db.cursor(cursor_factory=RealDictCursor)
+
+		cursor.execute(f"INSERT INTO employee (empemailid, empaddress, designation, salary) values(\'{email_id}\',\'{address}\',\'{designation}\',\'{salary}\')")
+		
+		cursor.execute(f"INSERT INTO useraccount (emailid, password) values(\'{email_id}\',\'{password}\')")
+		g.db.commit()
+
+		return jsonify(message="success")
+	except(Exception, psycopg2.Error) as error:
+		print(error)
 		return Response(status=500)
 	finally:
 		cursor.close()
 
 # function called before request is closed
-@login_blueprint.teardown_app_request
+@auth_blueprint.teardown_app_request
 def teardown_db(exception):
     db = g.pop('db', None)
     if db is not None:

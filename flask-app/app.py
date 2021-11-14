@@ -1,6 +1,6 @@
 from flask import Flask, g
 from flask_cors import CORS
-from routes.login import login_blueprint
+from routes.auth import auth_blueprint
 import psycopg2
 
 app = Flask(__name__)
@@ -20,8 +20,8 @@ def create_connection():
 def index():
 	return "<p>Hello, World!</p>"
 
-# sub route for /login
-app.register_blueprint(login_blueprint)
+# sub route for /auth
+app.register_blueprint(auth_blueprint)
 
 # function called before request is closed
 @app.teardown_appcontext
