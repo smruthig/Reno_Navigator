@@ -27,8 +27,8 @@ const AddProjectForm: React.FC = () => {
     const navigate = useNavigate();
     const employee = useStoreState((state: any) => state.employee);
 
-    const [startDate, setStartDate] = useState(new Date);
-    const [estimatedEndDate, setEstimatedEndDate] = useState(new Date);
+    const [startDate, setStartDate] = useState(new Date());
+    const [estimatedEndDate, setEstimatedEndDate] = useState(new Date());
 
     async function onSubmit(formdata: any) {
         try {

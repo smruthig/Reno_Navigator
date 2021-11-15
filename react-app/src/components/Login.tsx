@@ -1,14 +1,14 @@
 import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
-import { Text } from "@chakra-ui/react";
 import { Box, Heading } from "@chakra-ui/layout";
-import axios from "../utils/axios";
-import { useForm } from "react-hook-form";
+import { Text } from "@chakra-ui/react";
 import { AxiosResponse } from "axios";
-import { useNavigate } from "react-router-dom";
+import { useStoreActions } from "easy-peasy";
 import { useState } from "react";
-import { useStoreActions, useStoreState } from "easy-peasy";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import axios from "../utils/axios";
 
 interface LoginFormProps {
   emailId: string;
