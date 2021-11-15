@@ -1,11 +1,13 @@
 import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
+import { Text } from "@chakra-ui/react";
 import { Box, Heading } from "@chakra-ui/layout";
 import axios from "../utils/axios";
 import { useForm } from "react-hook-form";
 import { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 interface LoginFormProps {
   emailId: string;
@@ -14,6 +16,8 @@ interface LoginFormProps {
 export const Login: React.FC = () => {
   const { handleSubmit, register } = useForm<LoginFormProps>();
   const navigate = useNavigate();
+  const [hidden, setHidden] = useState(true);
+
   async function onSubmit(formdata: any) {
     const {data}: AxiosResponse = await axios.post("/login", formdata);
     //successful login
@@ -24,6 +28,8 @@ export const Login: React.FC = () => {
     else if(data.message === "no user"){
       navigate('/signup'); 
     }
+    else if(data.message === "incorrect password")
+      setHidden(false);
   }
 
   return (
@@ -41,6 +47,7 @@ export const Login: React.FC = () => {
         <Button my="5" type="submit">
           Submit
         </Button>
+        <Text hidden={hidden} color="red">Incorrect username or password</Text>
       </form>
     </Box>
   );
