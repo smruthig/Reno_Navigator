@@ -41,6 +41,17 @@ def post_project():
 	# finally:
 		# cursor.close()
 
+# @TODO get project details given project_id
+@project_blueprint.route('/project/<string:project_id>')
+def get_project_by_id(project_id):
+	try:
+		return "hi"
+	except(Exception, psycopg2.Error) as error:
+		print(error)
+		return Response(status=500)
+	# finally:
+		# cursor.close()
+
 # function called before request is closed
 @project_blueprint.teardown_app_request
 def teardown_db(exception):
