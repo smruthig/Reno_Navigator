@@ -6,9 +6,9 @@
 ## Employee
 1. Project manager
 	1. List of his/her projects(+ button)
-		1. Details of the project like site details
+		1. Details of the project like site details, end date
 		2. Customer details
-		3. Rooms with their designs(+ button)
+		3. Rooms with their designs
 			1. Products in every design
 		5. List of contractors working for the project(+ button)
 		6. List of designers working on the project(+ button)

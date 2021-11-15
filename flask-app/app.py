@@ -1,6 +1,7 @@
 from flask import Flask, g
 from flask_cors import CORS
 from routes.auth import auth_blueprint
+from routes.project import project_blueprint
 import psycopg2
 
 app = Flask(__name__)
@@ -22,6 +23,9 @@ def index():
 
 # sub route for /auth
 app.register_blueprint(auth_blueprint)
+
+# sub route for /project
+app.register_blueprint(project_blueprint)
 
 # function called before request is closed
 @app.teardown_appcontext

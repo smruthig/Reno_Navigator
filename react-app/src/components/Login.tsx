@@ -8,28 +8,36 @@ import { useForm } from "react-hook-form";
 import { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useStoreActions, useStoreState } from "easy-peasy";
 
 interface LoginFormProps {
   emailId: string;
   password: string;
 }
 export const Login: React.FC = () => {
+  const loginEmployee:any = useStoreActions((actions:any)=>actions.loginEmployee);
+
   const { handleSubmit, register } = useForm<LoginFormProps>();
+
   const navigate = useNavigate();
+
   const [hidden, setHidden] = useState(true);
 
   async function onSubmit(formdata: any) {
-    const {data}: AxiosResponse = await axios.post("/login", formdata);
-    //successful login
-    if (data.message === "success") {
-      navigate(`/user/${data.employeeId}`);
+    try {
+      const { data }: AxiosResponse = await axios.post("/login", formdata);
+      //successful login
+      if (data.message === "success") {
+        loginEmployee(data);
+        navigate(`/${data.designation}`);
+      }
+      //new user must sign up
+      else if (data.message === "no user") {
+        navigate("/signup");
+      } else if (data.message === "incorrect password") setHidden(false);
+    } catch (err) {
+      console.log(err);
     }
-    //new user must sign up
-    else if(data.message === "no user"){
-      navigate('/signup'); 
-    }
-    else if(data.message === "incorrect password")
-      setHidden(false);
   }
 
   return (
@@ -47,7 +55,9 @@ export const Login: React.FC = () => {
         <Button my="5" type="submit">
           Submit
         </Button>
-        <Text hidden={hidden} color="red">Incorrect username or password</Text>
+        <Text hidden={hidden} color="red">
+          Incorrect username or password
+        </Text>
       </form>
     </Box>
   );

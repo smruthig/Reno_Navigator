@@ -19,8 +19,12 @@ export const SignUp: React.FC = () => {
   const { handleSubmit, register } = useForm<SignUpFormProps>();
   const navigate = useNavigate();
   async function onSubmit(formdata: any) {
-    console.log(formdata);
-    const {data}: AxiosResponse = await axios.post("/signup", formdata);
+    try {
+      const { data }: AxiosResponse = await axios.post("/signup", formdata);
+      navigate(`/${data.designation}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
