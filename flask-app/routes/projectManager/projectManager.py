@@ -24,12 +24,15 @@ def get_projects(employee_id):
 	finally:
 		cursor.close()
 
-#@TODO creates a project also add record in managed by 
+# creates a project also add record in managed by 
 @projectManager_blueprint.route('/projectManager/<string:employee_id>',methods=['POST'])
 def post_project(employee_id):
 	try:
 		data = request.json
 		print(data)
+
+		# @TODO creates a project also add record in managed by and other tables
+
 		return "hi"
 	except(Exception, psycopg2.Error) as error:
 		print(error)
@@ -37,7 +40,7 @@ def post_project(employee_id):
 	# finally:
 		# cursor.close()
 
-# @TODO get project details given project_id
+# get project details given project_id
 @projectManager_blueprint.route('/projectManager/<string:employee_id>/<string:project_id>')
 def get_project_by_id(employee_id,project_id):
 	try:
@@ -58,6 +61,18 @@ def get_project_by_id(employee_id,project_id):
 		# @TODO designers and contractors
 		# @TODO Rooms & Designs in project
 		return jsonify(project=project,site=site,customer=customer,customerFeedback=customer_feedback)
+	except(Exception, psycopg2.Error) as error:
+		print(error)
+		return Response(status=500)
+	# finally:
+		# cursor.close()
+
+# gets all customerids for creating a project form
+@projectManager_blueprint.route('/projectManager/getallcustomerids')
+def get_all_customer_ids():
+	try:
+		# @TODO return all customer ids
+		return jsonify()
 	except(Exception, psycopg2.Error) as error:
 		print(error)
 		return Response(status=500)
