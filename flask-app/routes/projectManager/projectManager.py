@@ -43,15 +43,21 @@ def get_project_by_id(employee_id,project_id):
 	try:
 		cursor = g.db.cursor(cursor_factory=RealDictCursor)
 
-		cursor.execute(f"SELECT * FROM ( select * from project NATURAL JOIN customer WHERE projectid={project_id}) as foo NATURAL JOIN siteDetails;")
-		site_customer_details = cursor.fetchone()
+		cursor.execute(f"SELECT * FROM project where projectid={project_id}")
+		project = cursor.fetchone()
 
-		cursor.execute(f"SELECT customerid, feedback, feedbackdate, rating FROM customerfeedback where projectid={project_id} AND customerid={site_customer_details['customerid']};")
+		cursor.execute(f"SELECT houseNo, street, pincode, city, state, length, breadth from sitedetails where siteid={project['siteid']}")
+		site = cursor.fetchall()
+
+		cursor.execute(f"SELECT customerName, customerPhNo, customerEmailID, customerAddress from customer where customerid={project['customerid']}")
+		customer = cursor.fetchall()
+
+		cursor.execute(f"SELECT customerid, feedback, feedbackdate, rating FROM customerfeedback where projectid={project_id} AND customerid={project['customerid']};")
 		customer_feedback = cursor.fetchall()
 
 		# @TODO designers and contractors
 		# @TODO Rooms & Designs in project
-		return jsonify(siteCustomerDetails=site_customer_details,customerFeedback=customer_feedback)
+		return jsonify(project=project,site=site,customer=customer,customerFeedback=customer_feedback)
 	except(Exception, psycopg2.Error) as error:
 		print(error)
 		return Response(status=500)

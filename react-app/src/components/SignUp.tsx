@@ -7,6 +7,9 @@ import { AxiosResponse } from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "../utils/axios";
+import DatePicker from "react-datepicker"
+import { useState } from "react";
+import formatDate from "../utils/formatDate";
 
 interface SignUpFormProps {
   emailId: string;
@@ -18,9 +21,16 @@ interface SignUpFormProps {
 export const SignUp: React.FC = () => {
   const { handleSubmit, register } = useForm<SignUpFormProps>();
   const navigate = useNavigate();
+  const [dob,setDob] = useState(new Date());
+
   async function onSubmit(formdata: any) {
     try {
-      const { data }: AxiosResponse = await axios.post("/signup", formdata);
+      const { data }: AxiosResponse = await axios.post("/signup", 
+        {
+          ...formdata,
+          "dob":formatDate(dob),
+          "joindate":formatDate(new Date())
+        });
       navigate(`/${data.designation}`);
     } catch (err) {
       console.log(err);
@@ -57,6 +67,17 @@ export const SignUp: React.FC = () => {
           <NumberInput min={15001} defaultValue={15001}>
             <NumberInputField {...register("salary")} />
           </NumberInput>
+        </FormControl>
+        <FormControl id="start-date" isRequired>
+            <FormLabel>DOB</FormLabel>
+            <DatePicker
+                selected={dob}
+                maxDate={new Date()}
+                onChange={(date:Date) => {
+                    setDob(date);
+                }}
+                dateFormat="d/M/yyyy"
+            />
         </FormControl>
         <Button my="5" type="submit">
           Submit

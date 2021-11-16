@@ -1,13 +1,6 @@
 import {
-	Table as ChakraTable,
-	Thead,
-	Tbody,
-	Tfoot,
-	Tr,
-	Th,
-	Td,
-	TableCaption,
-  } from "@chakra-ui/react"
+    Box, Heading, Table as ChakraTable, Tbody, Td, Th, Thead, Tr
+} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 interface TableProps {
@@ -18,16 +11,22 @@ interface TableProps {
 const Table: React.FC<TableProps> = ({heading,data}) => {
 
     const [tableHeadings,setTableHeadings] = useState<string[]>();
-
+    
     useEffect(()=>{
-        setTableHeadings(Object.keys(data[0]));
-        console.log(tableHeadings);
+        if(data.length!==0)
+        {
+            setTableHeadings(Object.keys(data[0]));
+        }
     },[data])
 
     if(data.length===0)
+    {
         return null;
+    }
 
     return (
+        <Box my={5}>
+        <Heading size="md" mb={2}>{heading}</Heading>
         <ChakraTable variant="striped" colorScheme="teal" size="sm">
             <Thead>
                 <Tr>
@@ -54,6 +53,7 @@ const Table: React.FC<TableProps> = ({heading,data}) => {
                 }
             </Tbody>
         </ChakraTable>
+        </Box>
     );
 };
 

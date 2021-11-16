@@ -1,6 +1,5 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import { useStoreState } from "easy-peasy";
-import { useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import axios from "../../utils/axios";
@@ -23,18 +22,16 @@ const ProjectDetails:React.FC = () => {
 	if(isLoading)
 		return null;
 
-	const {customerFeedback,siteCustomerDetails} = data;
+	const {project,site,customer,customerFeedback} = data;
 	
 	return (
 	<Box mx="auto" mt="4%" w="50rem">
 		<Heading>Project {projectId}</Heading>
-		<Text>Start Date</Text>
-		<Text>Estimated End Date</Text>
-		<Heading size="md">Site Details</Heading>
-		<Box>
-			<Heading size="md">Customer Feedback</Heading>
-			<Table heading="Customer Feedback" data={customerFeedback}/>
-		</Box>
+		<Text>Start Date: {project.startdate}</Text>
+		<Text>Estimated End Date: {project.estimatedenddate}</Text>
+		<Table heading="Site Details" data={site}/>
+		<Table heading="Customer Details" data={customer}/>
+		<Table heading="Customer Feedback" data={customerFeedback}/>
 		<Heading size="md">Designers</Heading>
 		<Heading size="md">Contractors</Heading>
 	</Box>

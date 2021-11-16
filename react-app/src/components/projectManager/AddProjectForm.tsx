@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
+import formatDate from "../../utils/formatDate";
 
 interface AddProjectFormProps {
     houseNo: string;
@@ -36,8 +37,8 @@ const AddProjectForm: React.FC = () => {
                 `/projectManager/${employee.employeeId}`,
                 {
                     ...formdata,
-                    startDate,
-                    estimatedEndDate
+                    "startDate":formatDate(startDate),
+                    "estimatedEndDate":formatDate(estimatedEndDate)
                 }
             );
             navigate(-1);
