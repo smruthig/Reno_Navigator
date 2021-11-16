@@ -24,7 +24,7 @@ def index():
 # sub route for /auth
 app.register_blueprint(auth_blueprint)
 
-# sub route for /project
+# sub route for /projectManager
 app.register_blueprint(projectManager_blueprint)
 
 # function called before request is closed
