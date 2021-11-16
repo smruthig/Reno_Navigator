@@ -1,7 +1,7 @@
 from flask import Flask, g
 from flask_cors import CORS
 from routes.auth import auth_blueprint
-from routes.project import project_blueprint
+from routes.projectManager.projectManager import projectManager_blueprint
 import psycopg2
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ CORS(app)
 def create_connection():
 	try:
 		if 'db' not in g:
-			g.db = psycopg2.connect(dbname="hd",user="postgres",host="127.0.0.1")
+			g.db = psycopg2.connect(dbname="hdtest",user="postgres",host="127.0.0.1")
 	except (Exception, psycopg2.Error) as error:
 		print("Could not create connection:", error)
 
@@ -25,7 +25,7 @@ def index():
 app.register_blueprint(auth_blueprint)
 
 # sub route for /project
-app.register_blueprint(project_blueprint)
+app.register_blueprint(projectManager_blueprint)
 
 # function called before request is closed
 @app.teardown_appcontext

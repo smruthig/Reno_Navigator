@@ -33,7 +33,7 @@ const AddProjectForm: React.FC = () => {
     async function onSubmit(formdata: any) {
         try {
             const { data }: AxiosResponse = await axios.post(
-                `/project?employee_id=${employee.employeeId}`,
+                `/projectManager/${employee.employeeId}`,
                 {
                     ...formdata,
                     startDate,

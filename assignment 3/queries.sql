@@ -37,3 +37,6 @@ select * from employee where employeeID IN (select employeeID from (select emplo
 
 -- Site details 
 SELECT * FROM (project AS p JOIN designedBy AS d ON p.projectID=d.projectID AND employeeID=12) NATURAL JOIN siteDetails;
+
+--  added newly
+SELECT * FROM ( select * from project NATURAL JOIN customer WHERE projectid=1) as foo NATURAL JOIN siteDetails;

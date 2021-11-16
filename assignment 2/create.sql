@@ -15,8 +15,7 @@ create table employee(
 	salary decimal check (salary > '15000'),
 	dob date check(date_part('year',AGE(CURRENT_DATE,dob))>18),
 	joinDate date check(joinDate > dob),
-	primary key (employeeID),
-	FOREIGN KEY(projectID) REFERENCES project(projectID) ON DELETE SET NULL ON UPDATE CASCADE
+	primary key (employeeID)
 );
 
 create table managedBy(
@@ -184,7 +183,7 @@ create table useraccount(
 	emailID varchar(30),
 	password varchar(30),
 	primary key(emailID)
-)
+);
 
 insert into employee (empEmailID, designation) values ('admin@admin.com', 'admin');
 insert into useraccount (emailID, password) values ('admin@admin.com', '123');
