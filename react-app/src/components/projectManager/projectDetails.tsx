@@ -19,7 +19,7 @@ const ProjectDetails:React.FC = () => {
 			})
 		});
 
-	if(isLoading)
+	if(isLoading || data===undefined)
 		return null;
 
 	const {project,site,customer,customerFeedback} = data;
