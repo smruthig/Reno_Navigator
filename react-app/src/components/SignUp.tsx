@@ -10,7 +10,7 @@ import axios from "../utils/axios";
 import DatePicker from "react-datepicker"
 import { useState } from "react";
 import formatDate from "../utils/formatDate";
-import { errorToast } from "./projectManager/errorToast";
+import { errorToast } from "../utils/errorToast";
 
 interface SignUpFormProps {
   emailId: string;
