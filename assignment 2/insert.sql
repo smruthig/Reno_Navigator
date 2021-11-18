@@ -463,3 +463,5 @@ insert into sells (companyID, productID) values (17, 17);
 insert into sells (companyID, productID) values (18, 18);
 insert into sells (companyID, productID) values (19, 19);
 insert into sells (companyID, productID) values (20, 20);
+
+update employee set designation='projectManager' where employeeid='6';
