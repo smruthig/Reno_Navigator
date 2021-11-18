@@ -142,8 +142,8 @@ insert into designedBy (projectID, employeeID) values (17, 18);
 insert into designedBy (projectID, employeeID) values (19, 19);
 insert into designedBy (projectID, employeeID) values (20, 20);
 
-insert into managedBy (projectID, employeeID) values (1, 4);
-insert into managedBy (projectID, employeeID) values (2, 4);
+insert into managedBy (projectID, employeeID) values (1, 6);
+insert into managedBy (projectID, employeeID) values (2, 6);
 insert into managedBy (projectID, employeeID) values (3, 4);
 insert into managedBy (projectID, employeeID) values (5, 10);
 insert into managedBy (projectID, employeeID) values (7, 8);
