@@ -66,7 +66,7 @@ insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('dpllui@w3.org', '91293 Sutteridge Drive', 'VP', 272084, '1992/06/27', '2012/03/13');
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('thallowesc@addtoany.com', '93398 Melby Lane', 'Marketing', 181384, '1993/04/01', '2019/10/12');
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('bpocklington6@hostgator.com', '64379 Northland Junction', 'HR', 151331, '1977/07/03', '2020/01/11');
-insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('projectmanager@projectmanager.com', '005 Sage Avenue', 'projectmanager', 193978, '1987/09/16', '2012/08/01');
+insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('projectmgr@projectmgr.com', '005 Sage Avenue', 'projectmanager', 193978, '1987/09/16', '2012/08/01');
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('nbortoluttia@usatoday.com', '339 Center Avenue', 'projectmanager', 171060, '2001/06/27', '2021/01/29');
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('thoofeb@redcross.org', '80 Hoard Junction', 'projectmanager', 172729, '1978/04/10', '2020/04/18');
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('mpesseltd@is.gd', '81002 Dakota Point', 'projectmanager', 186127, '1971/07/09', '2014/02/01');
@@ -464,4 +464,4 @@ insert into sells (companyID, productID) values (18, 18);
 insert into sells (companyID, productID) values (19, 19);
 insert into sells (companyID, productID) values (20, 20);
 
-insert into useraccount(emailid,password) values ('projectmanager@projectmanager.com','1234');
+insert into useraccount(emailid,password) values ('projectmgr@projectmgr.com','1234');
