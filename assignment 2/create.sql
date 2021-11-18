@@ -187,4 +187,3 @@ create table useraccount(
 
 insert into employee (empEmailID, designation) values ('admin@admin.com', 'admin');
 insert into useraccount (emailID, password) values ('admin@admin.com', '123');
-insert into useraccount(emailid,password) values ('chelkin1@chicagotribune.com','1234');
