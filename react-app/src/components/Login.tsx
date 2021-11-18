@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
-import { Box, Heading } from "@chakra-ui/layout";
+import { Box, Flex, Heading } from "@chakra-ui/layout";
 import { Text } from "@chakra-ui/react";
 import { AxiosResponse } from "axios";
 import { useStoreActions } from "easy-peasy";
@@ -50,11 +50,16 @@ export const Login: React.FC = () => {
         </FormControl>
         <FormControl id="password" isRequired>
           <FormLabel>Password</FormLabel>
-          <Input {...register("password")} placeholder="Password" />
+          <Input {...register("password")} placeholder="Password" type="password"/>
         </FormControl>
-        <Button my="5" type="submit">
-          Submit
-        </Button>
+        <Flex justifyContent='space-between'>
+          <Button my="5" type="submit">
+            Submit
+          </Button>
+          <Button my="5" onClick={()=>{navigate("/signup")}}>
+            Sign Up
+          </Button>
+        </Flex>
         <Text hidden={hidden} color="red">
           Incorrect username or password
         </Text>

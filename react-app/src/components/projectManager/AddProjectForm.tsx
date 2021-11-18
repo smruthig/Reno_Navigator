@@ -2,13 +2,14 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Box, Heading } from "@chakra-ui/layout";
-import { NumberInput, NumberInputField } from "@chakra-ui/react";
+import { NumberInput, NumberInputField, Select } from "@chakra-ui/react";
 import { AxiosResponse } from "axios";
 import { useStoreState } from "easy-peasy";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
 import formatDate from "../../utils/formatDate";
@@ -21,7 +22,7 @@ interface AddProjectFormProps {
     state: string;
     length: number;
     breadth: number;
-    customer: string;
+    customerid: number;
 }
 const AddProjectForm: React.FC = () => {
     const { handleSubmit, register } = useForm<AddProjectFormProps>();
@@ -30,6 +31,18 @@ const AddProjectForm: React.FC = () => {
 
     const [startDate, setStartDate] = useState(new Date());
     const [estimatedEndDate, setEstimatedEndDate] = useState(new Date());
+    const { isLoading, data: customer } = useQuery("projects", () => {
+        return axios
+            .get("/projectManager/getallcustomerids")
+            .then(({ data }) => {
+                return data;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    });
+
+    if (isLoading) return null;
 
     async function onSubmit(formdata: any) {
         try {
@@ -37,8 +50,8 @@ const AddProjectForm: React.FC = () => {
                 `/projectManager/${employee.employeeId}`,
                 {
                     ...formdata,
-                    "startDate":formatDate(startDate),
-                    "estimatedEndDate":formatDate(estimatedEndDate)
+                    startDate: formatDate(startDate),
+                    estimatedEndDate: formatDate(estimatedEndDate),
                 }
             );
             navigate(-1);
@@ -94,7 +107,7 @@ const AddProjectForm: React.FC = () => {
                     <DatePicker
                         selected={startDate}
                         minDate={startDate}
-                        onChange={(date:Date) => {
+                        onChange={(date: Date) => {
                             setStartDate(date);
                         }}
                         dateFormat="d/M/yyyy"
@@ -105,11 +118,24 @@ const AddProjectForm: React.FC = () => {
                     <DatePicker
                         selected={estimatedEndDate}
                         minDate={startDate}
-                        onChange={(date:Date) => {
+                        onChange={(date: Date) => {
                             setEstimatedEndDate(date);
                         }}
                         dateFormat="d/M/yyyy"
                     />
+                </FormControl>
+                <FormControl id="designation" isRequired>
+                    <FormLabel>Customer id</FormLabel>
+                    {customer.length > 0 && (
+                        <Select
+                            placeholder="Select option"
+                            {...register("customerid")}
+                        >
+                            {customer.map((value: any, index: any) => {
+                                return <option value={index}>{value}</option>;
+                            })}
+                        </Select>
+                    )}
                 </FormControl>
                 <Button my="5" type="submit">
                     Submit
