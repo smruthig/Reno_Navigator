@@ -66,12 +66,12 @@ insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('dpllui@w3.org', '91293 Sutteridge Drive', 'VP', 272084, '1992/06/27', '2012/03/13');
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('thallowesc@addtoany.com', '93398 Melby Lane', 'Marketing', 181384, '1993/04/01', '2019/10/12');
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('bpocklington6@hostgator.com', '64379 Northland Junction', 'HR', 151331, '1977/07/03', '2020/01/11');
-insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('chelkin1@chicagotribune.com', '005 Sage Avenue', 'Project Manager', 193978, '1987/09/16', '2012/08/01');
-insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('nbortoluttia@usatoday.com', '339 Center Avenue', 'Project Manager', 171060, '2001/06/27', '2021/01/29');
-insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('thoofeb@redcross.org', '80 Hoard Junction', 'Project Manager', 172729, '1978/04/10', '2020/04/18');
-insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('mpesseltd@is.gd', '81002 Dakota Point', 'Project Manager', 186127, '1971/07/09', '2014/02/01');
-insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('ajager7@typepad.com', '3850 Surrey Hill', 'Project Manager', 189215, '1965/09/28', '2010/12/18');
-insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('kgini5@pen.io', '79 Stephen Lane', 'Project Manager', 167673, '1963/08/08', '2017/11/03');
+insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('projectmanager@projectmanager.com', '005 Sage Avenue', 'projectmanager', 193978, '1987/09/16', '2012/08/01');
+insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('nbortoluttia@usatoday.com', '339 Center Avenue', 'projectmanager', 171060, '2001/06/27', '2021/01/29');
+insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('thoofeb@redcross.org', '80 Hoard Junction', 'projectmanager', 172729, '1978/04/10', '2020/04/18');
+insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('mpesseltd@is.gd', '81002 Dakota Point', 'projectmanager', 186127, '1971/07/09', '2014/02/01');
+insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('ajager7@typepad.com', '3850 Surrey Hill', 'projectmanager', 189215, '1965/09/28', '2010/12/18');
+insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('kgini5@pen.io', '79 Stephen Lane', 'projectmanager', 167673, '1963/08/08', '2017/11/03');
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('dcliss0@merriam-webster.com', '429 Golf View Park', 'Sr Designer', 188329, '1971/07/05', '2019/05/25');
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('tsonschein2@scribd.com', '4 Burning Wood Alley', 'Sr Designer', 169527, '1990/05/04', '2020/09/03');
 insert into employee (empEmailID, empAddress, designation, salary, dob, joinDate) values ('aroncellig@goo.ne.jp', '89 Tennyson Center', 'Sr Designer', 186231, '1961/12/23', '2021/05/09');
@@ -142,9 +142,9 @@ insert into designedBy (projectID, employeeID) values (17, 18);
 insert into designedBy (projectID, employeeID) values (19, 19);
 insert into designedBy (projectID, employeeID) values (20, 20);
 
-insert into managedBy (projectID, employeeID) values (1, 5);
-insert into managedBy (projectID, employeeID) values (2, 6);
-insert into managedBy (projectID, employeeID) values (3, 6);
+insert into managedBy (projectID, employeeID) values (1, 4);
+insert into managedBy (projectID, employeeID) values (2, 4);
+insert into managedBy (projectID, employeeID) values (3, 4);
 insert into managedBy (projectID, employeeID) values (5, 10);
 insert into managedBy (projectID, employeeID) values (7, 8);
 insert into managedBy (projectID, employeeID) values (8, 7);
@@ -180,8 +180,8 @@ insert into customerFeedback (customerID, projectID, feedback, feedbackDate, rat
 insert into customerFeedback (customerID, projectID, feedback, feedbackDate, rating) values (5, 14, 'beautiful decor', '2021/07/24', 2.1);
 insert into customerFeedback (customerID, projectID, feedback, feedbackDate, rating) values (13, 7, 'totally worth it', '2021/05/14', 1.3);
 insert into customerFeedback (customerID, projectID, feedback, feedbackDate, rating) values (15, 1, 'beautiful decor', '2021/10/06', 2.2);
-insert into customerFeedback (customerID, projectID, feedback, feedbackDate, rating) values (10, 12, 'wonderful job', '2021/01/26', 2.9);
-insert into customerFeedback (customerID, projectID, feedback, feedbackDate, rating) values (8, 19, 'great designs', '2021/02/13', 2.0);
+insert into customerFeedback (customerID, projectID, feedback, feedbackDate, rating) values (10, 2, 'wonderful job', '2021/01/26', 2.9);
+insert into customerFeedback (customerID, projectID, feedback, feedbackDate, rating) values (8, 3, 'great designs', '2021/02/13', 2.0);
 
 insert into design (designCost) values (106876.79);
 insert into design (designCost) values (99621.92);
@@ -464,4 +464,4 @@ insert into sells (companyID, productID) values (18, 18);
 insert into sells (companyID, productID) values (19, 19);
 insert into sells (companyID, productID) values (20, 20);
 
-update employee set designation='projectManager' where employeeid='6';
+insert into useraccount(emailid,password) values ('projectmanager@projectmanager.com','1234');
