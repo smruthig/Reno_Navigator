@@ -10,6 +10,7 @@ import axios from "../utils/axios";
 import DatePicker from "react-datepicker"
 import { useState } from "react";
 import formatDate from "../utils/formatDate";
+import { errorToast } from "./projectManager/errorToast";
 
 interface SignUpFormProps {
   emailId: string;
@@ -34,6 +35,7 @@ export const SignUp: React.FC = () => {
       navigate(`/${data.designation}`);
     } catch (err) {
       console.log(err);
+      errorToast("Please fill fields correctly")
     }
   }
 
