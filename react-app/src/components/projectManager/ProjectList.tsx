@@ -13,7 +13,7 @@ const ProjectList: React.FC = () => {
 	const [projects,setProjects] = useState([]);
 
 	const {isLoading} = useQuery('projects',()=>{
-			return axios.get(`/projectManager/${employee.employeeId}`)
+			return axios.get(`/projectmanager/${employee.employeeId}?designation=${employee.designation}`)
 			.then(({data})=>{
 				if(data.message==="no projects")
 					setProjects([]);

@@ -25,7 +25,7 @@ export const Login: React.FC = () => {
 
   async function onSubmit(formdata: any) {
     try {
-      const { data }: AxiosResponse = await axios.post("/login", formdata);
+      const { data }: AxiosResponse = await axios.post("/login?designation=postgres", formdata);
       //successful login
       if (data.message === "success") {
         loginEmployee(data);
@@ -54,7 +54,7 @@ export const Login: React.FC = () => {
         </FormControl>
         <Flex justifyContent='space-between'>
           <Button my="5" type="submit">
-            Submit
+            Login
           </Button>
           <Button my="5" onClick={()=>{navigate("/signup")}}>
             Sign Up
