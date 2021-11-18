@@ -14,7 +14,7 @@ def create_connection():
 	try:
 		designation = request.args.get('designation')
 		if 'db' not in g:
-			g.db = psycopg2.connect(dbname="hdtest",user=designation ,password="1234",host="127.0.0.1")
+			g.db = psycopg2.connect(dbname="hd",user=designation ,password="1234",host="127.0.0.1")
 	except (Exception, psycopg2.Error) as error:
 		print("Could not create connection:", error)
 

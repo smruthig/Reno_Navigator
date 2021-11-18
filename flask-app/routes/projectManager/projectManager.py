@@ -13,9 +13,6 @@ def get_projects(employee_id):
 
 		cursor.execute(f"SELECT p.projectID from project as p where p.projectID IN (SELECT projectID from managedBy as m where m.employeeID={employee_id});")
 		res = cursor.fetchall()
-		cursor.execute(f"SELECT current_user;")
-		current_user = cursor.fetchall()
-		print(current_user)
 		if res:
 			# resjson = json.dumps(res,indent=4, sort_keys=True, default=str)
 			return jsonify(res)
@@ -62,8 +59,8 @@ def get_project_by_id(employee_id,project_id):
 		customer_feedback = cursor.fetchall()
 
 		# @TODO designers and contractors
-		cursor.execute(f"SELECT employeeid, empemailid FROM employee, designedby where designedby.projectid={project_id} AND designedby.employeeid=employee.employeeid;")
-		designer = cursor.fetchall()
+		# cursor.execute(f"SELECT employeeid, empemailid FROM employee, designedby where designedby.projectid={project_id} AND designedby.employeeid=employee.employeeid;")
+		# designer = cursor.fetchall()
 
 		# @TODO Rooms & Designs in project
 
