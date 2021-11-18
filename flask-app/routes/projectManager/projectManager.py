@@ -62,7 +62,12 @@ def get_project_by_id(employee_id,project_id):
 		customer_feedback = cursor.fetchall()
 
 		# @TODO designers and contractors
+		cursor.execute(f"SELECT employeeid, empemailid FROM employee, designedby where designedby.projectid={project_id} AND designedby.employeeid=employee.employeeid;")
+		designer = cursor.fetchall()
+
 		# @TODO Rooms & Designs in project
+
+		
 		return jsonify(project=project,site=site,customer=customer,customerFeedback=customer_feedback)
 	except(Exception, psycopg2.Error) as error:
 		print(error)
