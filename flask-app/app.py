@@ -13,7 +13,7 @@ CORS(app)
 def create_connection():
 	try:
 		if 'db' not in g:
-			g.db = psycopg2.connect(dbname="hdtest",user="postgres",host="127.0.0.1")
+			g.db = psycopg2.connect(dbname="hd",user="postgres", password="1234", host="127.0.0.1")
 	except (Exception, psycopg2.Error) as error:
 		print("Could not create connection:", error)
 
