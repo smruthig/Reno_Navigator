@@ -10,7 +10,7 @@ projectManager_blueprint = Blueprint('user', __name__)
 def get_projects(employee_id):
 	try:
 		cursor = g.db.cursor(cursor_factory=RealDictCursor)
-
+		print("!")
 		cursor.execute(f"SELECT p.projectID from project as p where p.projectID IN (SELECT projectID from managedBy as m where m.employeeID={employee_id});")
 		res = cursor.fetchall()
 		if res:
@@ -59,13 +59,16 @@ def get_project_by_id(employee_id,project_id):
 		customer_feedback = cursor.fetchall()
 
 		# @TODO designers and contractors
-		# cursor.execute(f"SELECT employeeid, empemailid FROM employee, designedby where designedby.projectid={project_id} AND designedby.employeeid=employee.employeeid;")
-		# designer = cursor.fetchall()
+		cursor.execute(f"SELECT e.employeeid, e.empemailid FROM employee as e, designedby where designedby.projectid={project_id} AND designedby.employeeid=e.employeeid;")
+		designer = cursor.fetchall()
+
+		cursor.execute(f"SELECT c.contractorid, c.contractorname, c.typeofwork, c.contractoremail FROM contractor as c, works where projectid={project_id} AND c.contractorid=works.contractorid;")
+		contractor = cursor.fetchall()
 
 		# @TODO Rooms & Designs in project
 
 		
-		return jsonify(project=project,site=site,customer=customer,customerFeedback=customer_feedback)
+		return jsonify(project=project,site=site,customer=customer,customerFeedback=customer_feedback, designer=designer, contractor=contractor)
 	except(Exception, psycopg2.Error) as error:
 		print(error)
 		return Response(error,status=500)
