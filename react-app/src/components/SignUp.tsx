@@ -11,8 +11,10 @@ import DatePicker from "react-datepicker"
 import { useState } from "react";
 import formatDate from "../utils/formatDate";
 import { errorToast } from "../utils/errorToast";
+import { useStoreActions } from "easy-peasy";
 
 interface SignUpFormProps {
+  name: string;
   emailId: string;
   password: string;
   address: string;
@@ -20,19 +22,23 @@ interface SignUpFormProps {
   salary: number;
 }
 export const SignUp: React.FC = () => {
+  const loginEmployee:any = useStoreActions((actions:any)=>actions.loginEmployee);
   const { handleSubmit, register } = useForm<SignUpFormProps>();
   const navigate = useNavigate();
   const [dob,setDob] = useState(new Date());
 
   async function onSubmit(formdata: any) {
     try {
-      const { data }: AxiosResponse = await axios.post("/signup", 
+      const { data }: AxiosResponse = await axios.post("/signup?designation=postgres", 
         {
           ...formdata,
           "dob":formatDate(dob),
           "joindate":formatDate(new Date())
         });
-      navigate(`/${data.designation}`);
+      if (data.message === "success") {
+        loginEmployee(data);
+        navigate(`/${data.designation}`);
+      }
     } catch (err) {
       console.log(err);
       errorToast("Please fill fields correctly")
@@ -43,6 +49,10 @@ export const SignUp: React.FC = () => {
     <Box mx="auto" my="auto" w="50rem" h="50rem" p="5rem">
       <Heading textAlign="center">Sign Up</Heading>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl id="email-id" isRequired>
+          <FormLabel>Name</FormLabel>
+          <Input {...register("name")} placeholder="Name" />
+        </FormControl>
         <FormControl id="email-id" isRequired>
           <FormLabel>Email ID</FormLabel>
           <Input {...register("emailId")} placeholder="Email Id" />
@@ -58,9 +68,9 @@ export const SignUp: React.FC = () => {
         <FormControl id="designation" isRequired>
           <FormLabel>Designation</FormLabel>
           <Select placeholder="Select option" {...register("designation")}>
-            <option value="projectManager">project manager</option>
+            <option value="projectmanager">project manager</option>
             <option value="designer">designer</option>
-            <option value="companyManager">company manager</option>
+            <option value="companymanager">company manager</option>
             <option value="accountant">accountant</option>
           </Select>
         </FormControl>

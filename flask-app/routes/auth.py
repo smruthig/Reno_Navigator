@@ -37,11 +37,11 @@ def login():
 def signup():
 	try:
 		data = request.json
-		email_id, password, address, designation, salary, dob, joindate  = itemgetter('emailId','password','address','designation','salary','dob','joindate')(data)
+		name, email_id, password, address, designation, salary, dob, joindate  = itemgetter('name','emailId','password','address','designation','salary','dob','joindate')(data)
 		salary = float(salary)
 		cursor = g.db.cursor(cursor_factory=RealDictCursor)
 
-		cursor.execute(f"INSERT INTO employee (empemailid, empaddress, designation, salary,dob,joindate) values(\'{email_id}\',\'{address}\',\'{designation}\',\'{salary}\',\'{dob}\',\'{joindate}\')")
+		cursor.execute(f"INSERT INTO employee (empname, empemailid, empaddress, designation, salary,dob,joindate) values(\'{name}\',\'{email_id}\',\'{address}\',\'{designation}\',\'{salary}\',\'{dob}\',\'{joindate}\')")
 		
 		cursor.execute(f"INSERT INTO useraccount (emailid, password) values(\'{email_id}\',\'{password}\')")
 		g.db.commit()

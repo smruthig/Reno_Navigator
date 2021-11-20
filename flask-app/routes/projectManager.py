@@ -32,6 +32,7 @@ def post_project(employee_id):
 		print(data)
 
 		# @TODO creates a project also add record in managed by and other tables
+		# @TODO insert into project, managedBY, siteDetails table
 
 		return "hi"
 	except(Exception, psycopg2.Error) as error:
