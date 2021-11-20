@@ -22,7 +22,7 @@ const ProjectDetails:React.FC = () => {
 	if(isLoading || data===undefined)
 		return null;
 
-	const {project,site,customer,customerFeedback} = data;
+	const {project,site,customer,customerFeedback, designer, contractor} = data;
 	
 	return (
 	<Box mx="auto" mt="4%" w="50rem">
@@ -32,8 +32,8 @@ const ProjectDetails:React.FC = () => {
 		<Table heading="Site Details" data={site}/>
 		<Table heading="Customer Details" data={customer}/>
 		<Table heading="Customer Feedback" data={customerFeedback}/>
-		<Heading size="md">Designers</Heading>
-		<Heading size="md">Contractors</Heading>
+		<Table heading="Designers" data={designer}/>
+		<Table heading="Contractors" data={contractor}/>
 	</Box>
 	)
 }

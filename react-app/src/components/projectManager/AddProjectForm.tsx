@@ -75,7 +75,7 @@ const AddProjectForm: React.FC = () => {
 
     return (
         <Box mx="auto" my="auto" w="50rem" h="50rem" p="5rem">
-            <Heading textAlign="center">Sign Up</Heading>
+            <Heading textAlign="center">Add New Project</Heading>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl id="house-no" isRequired>
                     <FormLabel>House No</FormLabel>
