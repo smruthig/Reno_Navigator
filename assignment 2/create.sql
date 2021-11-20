@@ -8,8 +8,8 @@ create table project(
 );
 
 create table employee(
-	empname varchar(30),
 	employeeID serial,
+	empname varchar(30),
 	empEmailID varchar(30),
 	empAddress text,
 	designation varchar(30),
