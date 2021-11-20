@@ -233,6 +233,7 @@ insert into hasRoom (projectID, roomID) values (1, 1);
 insert into hasRoom (projectID, roomID) values (1, 2);
 insert into hasRoom (projectID, roomID) values (2, 3);
 insert into hasRoom (projectID, roomID) values (2, 4);
+insert into hasRoom (projectID, roomID) values (2,10 );
 insert into hasRoom (projectID, roomID) values (5, 5);
 insert into hasRoom (projectID, roomID) values (5, 6);
 insert into hasRoom (projectID, roomID) values (3, 7);
