@@ -64,7 +64,7 @@ def get_project_by_id(employee_id,project_id):
 		cursor.execute(f" SELECT c.contractorid, c.contractorname, c.typeofwork, c.contractoremail FROM contractor as c where c.contractorid in (select contractorid from works where projectid={project_id});")
 		contractor = cursor.fetchall()
 
-		cursor.execute(f"SELECT r.roomid, r.roomname, r.roomsize, p.productid, p.typename, p.roomname, p.productcost, p.description FROM room AS r, product AS p WHERE r.designid IN (SELECT designid FROM room WHERE roomid IN (select roomid from hasRoom where projectid = {project_id})) AND p.productid IN (SELECT designIncludesProducts.productid FROM designIncludesProducts WHERE designid = r.designid);")
+		cursor.execute(f"select * from (select * from (select * from hasRoom natural join room where projectID={project_id}) as x natural join designIncludesProducts) as y natural join product;")
 		des_for_rooms = cursor.fetchall()
 		
 		return jsonify(project=project,site=site,customer=customer,customerFeedback=customer_feedback, designer=designer, contractor=contractor, des_for_rooms=des_for_rooms)
