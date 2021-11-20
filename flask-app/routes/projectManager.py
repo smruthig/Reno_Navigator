@@ -58,15 +58,13 @@ def get_project_by_id(employee_id,project_id):
 		cursor.execute(f"SELECT customerid, feedback, feedbackdate, rating FROM customerfeedback where projectid={project_id} AND customerid={project['customerid']};")
 		customer_feedback = cursor.fetchall()
 
-		# @TODO designers and contractors
 		cursor.execute(f"SELECT e.employeeid, e.empname, e.empemailid FROM employee as e, designedby where designedby.projectid={project_id} AND designedby.employeeid=e.employeeid;")
 		designer = cursor.fetchall()
 
 		cursor.execute(f" SELECT c.contractorid, c.contractorname, c.typeofwork, c.contractoremail FROM contractor as c where c.contractorid in (select contractorid from works where projectid={project_id});")
 		contractor = cursor.fetchall()
 
-		# @TODO Rooms & Designs in project
-		cursor.execute(f"SELECT r.roomname, r.roomsize, p.productid, p.typename, p.roomname, p.productcost, p.description FROM room AS r, product AS p WHERE r.designid IN (SELECT designid FROM room WHERE roomid IN (select roomid from hasRoom where projectid = {project_id})) AND p.productid IN (SELECT designIncludesProducts.productid FROM designIncludesProducts WHERE designid = r.designid);")
+		cursor.execute(f"SELECT r.roomid, r.roomname, r.roomsize, p.productid, p.typename, p.roomname, p.productcost, p.description FROM room AS r, product AS p WHERE r.designid IN (SELECT designid FROM room WHERE roomid IN (select roomid from hasRoom where projectid = {project_id})) AND p.productid IN (SELECT designIncludesProducts.productid FROM designIncludesProducts WHERE designid = r.designid);")
 		des_for_rooms = cursor.fetchall()
 		
 		return jsonify(project=project,site=site,customer=customer,customerFeedback=customer_feedback, designer=designer, contractor=contractor, des_for_rooms=des_for_rooms)

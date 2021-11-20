@@ -2,7 +2,7 @@ from flask import Flask, g, request
 from flask_cors import CORS
 from routes.auth import auth_blueprint
 from routes.customer import customer_blueprint
-from routes.projectManager.projectManager import projectmanager_blueprint
+from routes.projectManager import projectmanager_blueprint
 import psycopg2
 
 app = Flask(__name__)
