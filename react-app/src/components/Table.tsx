@@ -41,7 +41,7 @@ const Table: React.FC<TableProps> = ({heading,data}) => {
                 {
                     data.map((row:any,index:any)=>{
                         return (
-                            <Tr>
+                            <Tr key={index}>
                                 {
                                     Object.entries(row).map((value:any,index:any)=>{
                                         return <Td key={index}>{value[1]}</Td>

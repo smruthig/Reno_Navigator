@@ -2,7 +2,19 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Box, Heading } from "@chakra-ui/layout";
-import { NumberInput, NumberInputField, Select } from "@chakra-ui/react";
+import {
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay,
+    NumberInput,
+    NumberInputField,
+    Select,
+    useDisclosure,
+} from "@chakra-ui/react";
 import { AxiosResponse } from "axios";
 import { useStoreState } from "easy-peasy";
 import { useState } from "react";
@@ -28,12 +40,13 @@ const AddProjectForm: React.FC = () => {
     const { handleSubmit, register } = useForm<AddProjectFormProps>();
     const navigate = useNavigate();
     const employee = useStoreState((state: any) => state.employee);
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const [startDate, setStartDate] = useState(new Date());
     const [estimatedEndDate, setEstimatedEndDate] = useState(new Date());
-    const { isLoading, data: customer } = useQuery("projects", () => {
+    const { isLoading, data: customer } = useQuery("get-all-customers", () => {
         return axios
-            .get("/projectManager/getallcustomerids")
+            .get(`/getallcustomers?designation=${employee.designation}`)
             .then(({ data }) => {
                 return data;
             })
@@ -62,7 +75,7 @@ const AddProjectForm: React.FC = () => {
 
     return (
         <Box mx="auto" my="auto" w="50rem" h="50rem" p="5rem">
-            <Heading textAlign="center">Sign Up</Heading>
+            <Heading textAlign="center">Add New Project</Heading>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl id="house-no" isRequired>
                     <FormLabel>House No</FormLabel>
@@ -124,6 +137,7 @@ const AddProjectForm: React.FC = () => {
                         dateFormat="d/M/yyyy"
                     />
                 </FormControl>
+
                 <FormControl id="designation" isRequired>
                     <FormLabel>Customer id</FormLabel>
                     {customer.length > 0 && (
@@ -131,15 +145,43 @@ const AddProjectForm: React.FC = () => {
                             placeholder="Select option"
                             {...register("customerid")}
                         >
-                            {customer.map((value: any, index: any) => {
-                                return <option value={index}>{value}</option>;
-                            })}
+                            {customer.map(
+                                (
+                                    { customerid, customername }: any,
+                                    index: any
+                                ) => {
+                                    return (
+                                        <option
+                                            value={customerid}
+                                            key={customerid}
+                                        >
+                                            {customerid}-{customername}
+                                        </option>
+                                    );
+                                }
+                            )}
                         </Select>
                     )}
                 </FormControl>
+                <Button my="5" display="block" onClick={onOpen}>
+                    Add Customer
+                </Button>
                 <Button my="5" type="submit">
                     Submit
                 </Button>
+                <Modal isOpen={isOpen} onClose={onClose}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalHeader>Add Customer</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody>
+
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button variant="ghost">Create</Button>
+                        </ModalFooter>
+                    </ModalContent>
+                </Modal>
             </form>
         </Box>
     );
