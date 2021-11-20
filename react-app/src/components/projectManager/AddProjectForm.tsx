@@ -6,14 +6,12 @@ import {
     Modal,
     ModalBody,
     ModalCloseButton,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
+    ModalContent, ModalHeader,
     ModalOverlay,
     NumberInput,
     NumberInputField,
     Select,
-    useDisclosure,
+    useDisclosure
 } from "@chakra-ui/react";
 import { AxiosResponse } from "axios";
 import { useStoreState } from "easy-peasy";
