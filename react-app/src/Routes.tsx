@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Route, Routes as Switch} from "react-router-dom";
 import {Login} from "./components/Login";
 import AddProjectForm from "./components/projectManager/AddProjectForm";
-import ProjectDetails from "./components/projectManager/projectDetails";
+import ProjectDetails from "./components/projectManager/ProjectDetails";
 import ProjectList from "./components/projectManager/ProjectList";
 import { SignUp } from "./components/SignUp";
 export default function Routes()

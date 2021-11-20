@@ -3,10 +3,10 @@ from operator import itemgetter
 from psycopg2.extras import RealDictCursor
 import psycopg2
 
-projectManager_blueprint = Blueprint('user', __name__)
+projectmanager_blueprint = Blueprint('projectmanager', __name__)
 
 # gets projectid of projects managed by given an employee id
-@projectManager_blueprint.route('/projectmanager/<string:employee_id>')
+@projectmanager_blueprint.route('/projectmanager/<string:employee_id>')
 def get_projects(employee_id):
 	try:
 		cursor = g.db.cursor(cursor_factory=RealDictCursor)
@@ -25,7 +25,7 @@ def get_projects(employee_id):
 		cursor.close()
 
 # creates a project also add record in managed by 
-@projectManager_blueprint.route('/projectmanager/<string:employee_id>',methods=['POST'])
+@projectmanager_blueprint.route('/projectmanager/<string:employee_id>',methods=['POST'])
 def post_project(employee_id):
 	try:
 		data = request.json
@@ -41,7 +41,7 @@ def post_project(employee_id):
 		# cursor.close()
 
 # get project details given project_id
-@projectManager_blueprint.route('/projectmanager/<string:employee_id>/<string:project_id>')
+@projectmanager_blueprint.route('/projectmanager/<string:employee_id>/<string:project_id>')
 def get_project_by_id(employee_id,project_id):
 	try:
 		cursor = g.db.cursor(cursor_factory=RealDictCursor)
@@ -75,23 +75,10 @@ def get_project_by_id(employee_id,project_id):
 	# finally:
 		# cursor.close()
 
-# gets all customerids for creating a project form
-@projectManager_blueprint.route("/getallcustomers")
-def get_all_customer_ids():
-	try:
-		cursor = g.db.cursor(cursor_factory=RealDictCursor)
 
-		cursor.execute(f"SELECT customerid,customername FROM customer ORDER BY customername;")	
-		customer = cursor.fetchall()
-		return jsonify(customer)
-	except(Exception, psycopg2.Error) as error:
-		print(error)
-		return Response(error,status=500)
-	finally:
-		cursor.close()
 
 # function called before request is closed
-@projectManager_blueprint.teardown_app_request
+@projectmanager_blueprint.teardown_app_request
 def teardown_db(exception):
     db = g.pop('db', None)
     if db is not None:

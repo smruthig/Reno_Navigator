@@ -1,7 +1,8 @@
 from flask import Flask, g, request
 from flask_cors import CORS
 from routes.auth import auth_blueprint
-from routes.projectManager.projectManager import projectManager_blueprint
+from routes.customer import customer_blueprint
+from routes.projectManager.projectManager import projectmanager_blueprint
 import psycopg2
 
 app = Flask(__name__)
@@ -27,7 +28,9 @@ def index():
 app.register_blueprint(auth_blueprint)
 
 # sub route for /projectManager
-app.register_blueprint(projectManager_blueprint)
+app.register_blueprint(projectmanager_blueprint)
+
+app.register_blueprint(customer_blueprint)
 
 # function called before request is closed
 @app.teardown_appcontext

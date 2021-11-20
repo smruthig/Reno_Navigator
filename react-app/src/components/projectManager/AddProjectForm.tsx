@@ -36,18 +36,30 @@ interface AddProjectFormProps {
     breadth: number;
     customerid: number;
 }
+
+interface AddCustomerFormProps {
+    customername: string;
+    customeremailid: string;
+    customeraddress: string;
+    customerphoneno: string;
+}
+
 const AddProjectForm: React.FC = () => {
     const { handleSubmit, register } = useForm<AddProjectFormProps>();
+    const { handleSubmit:handleSubmitModal, register:registerModal } = useForm<AddCustomerFormProps>();
     const navigate = useNavigate();
     const employee = useStoreState((state: any) => state.employee);
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const [startDate, setStartDate] = useState(new Date());
     const [estimatedEndDate, setEstimatedEndDate] = useState(new Date());
-    const { isLoading, data: customer } = useQuery("get-all-customers", () => {
+    const [customer,setCustomer] = useState<any>([]);
+
+    const { isLoading } = useQuery("get-all-customers", () => {
         return axios
             .get(`/getallcustomers?designation=${employee.designation}`)
             .then(({ data }) => {
+                setCustomer(data)
                 return data;
             })
             .catch((err) => {
@@ -59,8 +71,8 @@ const AddProjectForm: React.FC = () => {
 
     async function onSubmit(formdata: any) {
         try {
-            const { data }: AxiosResponse = await axios.post(
-                `/projectManager/${employee.employeeId}`,
+            await axios.post(
+                `/projectmanager/${employee.employeeId}`,
                 {
                     ...formdata,
                     startDate: formatDate(startDate),
@@ -71,6 +83,19 @@ const AddProjectForm: React.FC = () => {
         } catch (err) {
             console.log(err);
         }
+    }
+
+    async function createCustomer(formdata:any) {
+        try {
+            console.log(formdata);
+            const { data }: AxiosResponse = await axios.post(`/createcustomer?designation=${employee.designation}`, formdata);
+            setCustomer((customer:any)=>{
+                return [...customer, data];
+            });
+            onClose();
+        } catch (err) {
+            console.log(err);
+        } 
     }
 
     return (
@@ -169,20 +194,35 @@ const AddProjectForm: React.FC = () => {
                 <Button my="5" type="submit">
                     Submit
                 </Button>
-                <Modal isOpen={isOpen} onClose={onClose}>
-                    <ModalOverlay />
-                    <ModalContent>
-                        <ModalHeader>Add Customer</ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody>
-
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button variant="ghost">Create</Button>
-                        </ModalFooter>
-                    </ModalContent>
-                </Modal>
             </form>
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Add Customer</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <form onSubmit={handleSubmitModal(createCustomer)}>
+                            <FormControl id="customer name" isRequired>
+                                <FormLabel>Customer Name</FormLabel>
+                                <Input {...registerModal('customername')} /> 
+                            </FormControl>
+                            <FormControl id="customer ph no" isRequired>
+                                <FormLabel>Customer Phone Number</FormLabel>
+                                <Input {...registerModal("customerphoneno")}/> 
+                            </FormControl>
+                            <FormControl id="customer email" isRequired>
+                                <FormLabel>Customer Email</FormLabel>
+                                <Input {...registerModal('customeremailid')}/>
+                            </FormControl>
+                            <FormControl id="customer address" isRequired>
+                                <FormLabel>Customer Address</FormLabel>
+                                <Input {...registerModal('customeraddress')}/>
+                            </FormControl>
+                            <Button variant="ghost" type="submit">Create</Button>
+                        </form>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </Box>
     );
 };
