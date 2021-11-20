@@ -9,7 +9,7 @@ const ProjectDetails:React.FC = () => {
 	const {projectId} = useParams();
 	const employee = useStoreState((state:any)=>state.employee);
 
-	const {isLoading, data} = useQuery('projects',()=>{
+	const {isLoading, data} = useQuery('project-details',()=>{
 			return axios.get(`/projectmanager/${employee.employeeId}/${projectId}?designation=${employee.designation}`)
 			.then(({data})=>{
 				return data;

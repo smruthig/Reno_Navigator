@@ -73,16 +73,19 @@ def get_project_by_id(employee_id,project_id):
 		# cursor.close()
 
 # gets all customerids for creating a project form
-@projectManager_blueprint.route('/projectmanager/getallcustomerids')
+@projectManager_blueprint.route("/getallcustomers")
 def get_all_customer_ids():
 	try:
-		# @TODO return all customer ids
-		return jsonify()
+		cursor = g.db.cursor(cursor_factory=RealDictCursor)
+
+		cursor.execute(f"SELECT customerid,customername FROM customer ORDER BY customername;")	
+		customer = cursor.fetchall()
+		return jsonify(customer)
 	except(Exception, psycopg2.Error) as error:
 		print(error)
-		return Response(status=500)
-	# finally:
-		# cursor.close()
+		return Response(error,status=500)
+	finally:
+		cursor.close()
 
 # function called before request is closed
 @projectManager_blueprint.teardown_app_request
