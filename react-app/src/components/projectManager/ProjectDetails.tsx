@@ -29,13 +29,12 @@ const ProjectDetails:React.FC = () => {
 		<Heading>Project {projectId}</Heading>
 		<Text>Start Date: {project.startdate}</Text>
 		<Text>Estimated End Date: {project.estimatedenddate}</Text>
-		<Table heading="Site Details" data={site}/>
-		<Table heading="Customer Details" data={customer}/>
-		<Table heading="Customer Feedback" data={customerFeedback}/>
-		<Table heading="Designers" data={designer}/>
-		<Table heading="Contractors" data={contractor}/>
-		<Table heading="Design" data={des_for_rooms}/>
-		
+		<Table heading="Site Details" data={site} tableHeadings={['houseno', 'street', 'pincode', 'city', 'state', 'length', 'breadth']}/>
+		<Table heading="Customer Details" data={customer} tableHeadings={['customername', 'customerphno', 'customeremailid', 'customeraddress']}/>
+		<Table heading="Customer Feedback" data={customerFeedback} tableHeadings={['customerid', 'feedback', 'feedbackdate', 'rating']}/>
+		<Table heading="Designers" data={designer} tableHeadings={['employeeid', 'empname', 'empemailid']}/>
+		<Table heading="Contractors" data={contractor} tableHeadings={['contractorid', 'contractorname', 'typeofwork', 'contractoremail']}/>
+		<Table heading="Design" data={des_for_rooms} tableHeadings={['roomid', 'roomname', 'roomsize', 'designid', 'productid', 'typename', 'productcost', 'description']}/>
 	</Box>
 	)
 }
