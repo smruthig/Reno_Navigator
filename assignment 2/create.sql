@@ -9,6 +9,7 @@ create table project(
 
 create table employee(
 	employeeID serial,
+	empname varchar(30),
 	empEmailID varchar(30),
 	empAddress text,
 	designation varchar(30),
