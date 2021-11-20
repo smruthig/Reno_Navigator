@@ -62,7 +62,7 @@ def get_project_by_id(employee_id,project_id):
 		cursor.execute(f"SELECT e.employeeid, e.empemailid FROM employee as e, designedby where designedby.projectid={project_id} AND designedby.employeeid=e.employeeid;")
 		designer = cursor.fetchall()
 
-		cursor.execute(f"SELECT c.contractorid, c.contractorname, c.typeofwork, c.contractoremail FROM contractor as c, works where projectid={project_id} AND c.contractorid=works.contractorid;")
+		cursor.execute(f" SELECT c.contractorid, c.contractorname, c.typeofwork, c.contractoremail FROM contractor as c where c.contractorid in (select contractorid from works where projectid={project_id});")
 		contractor = cursor.fetchall()
 
 		# @TODO Rooms & Designs in project
