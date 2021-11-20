@@ -204,28 +204,30 @@ insert into design (designCost) values (31012.67);
 insert into design (designCost) values (130554.53);
 insert into design (designCost) values (102232.04);
 
-insert into room (roomName, roomSize, designID) values ('Living Room', 'M', 1);
-insert into room (roomName, roomSize, designID) values ('Dining Hall', 'L', 10);
-insert into room (roomName, roomSize, designID) values ('Kitchen', 'S', 5);
-insert into room (roomName, roomSize, designID) values ('Bedroom', 'S', 20);
-insert into room (roomName, roomSize, designID) values ('Bedroom', 'S', 10);
+insert into room (roomName, roomSize, designID) values ('Bedroom', 'S', 1);
+insert into room (roomName, roomSize, designID) values ('Bedroom', 'S', 2);
+insert into room (roomName, roomSize, designID) values ('Bedroom', 'M', 4);
+insert into room (roomName, roomSize, designID) values ('Bedroom', 'M', 5);
+insert into room (roomName, roomSize, designID) values ('Bedroom', 'M', 2);
+insert into room (roomName, roomSize, designID) values ('Bedroom', 'M', 1);
+insert into room (roomName, roomSize, designID) values ('Bedroom', 'L', 4);
+insert into room (roomName, roomSize, designID) values ('Bedroom', 'L', 3);
+insert into room (roomName, roomSize, designID) values ('Bedroom', 'L', 3);
+insert into room (roomName, roomSize, designID) values ('Living Hall', 'M', 19);
+insert into room (roomName, roomSize, designID) values ('Living Hall', 'L', 20);
+insert into room (roomName, roomSize, designID) values ('Living Hall', 'M', 16);
+insert into room (roomName, roomSize, designID) values ('Dining Hall', 'L', 14);
+insert into room (roomName, roomSize, designID) values ('Dining Hall', 'L', 15);
+insert into room (roomName, roomSize, designID) values ('Dining Hall', 'S', 14);
+insert into room (roomName, roomSize, designID) values ('Kitchen', 'S', 13);
+insert into room (roomName, roomSize, designID) values ('Kitchen', 'M', 12);
+insert into room (roomName, roomSize, designID) values ('Kitchen', 'M', 11);
 insert into room (roomName, roomSize, designID) values ('Bathroom', 'S', 6);
-
-insert into room (roomName, roomSize, designID) values ('Living Room', 'L', 3);
-insert into room (roomName, roomSize, designID) values ('Dining Hall', 'L', 16);
-insert into room (roomName, roomSize, designID) values ('Kitchen', 'M', 7);
-insert into room (roomName, roomSize, designID) values ('Bathroom', 'M', 12);
+insert into room (roomName, roomSize, designID) values ('Bathroom', 'M', 7);
 insert into room (roomName, roomSize, designID) values ('Bathroom', 'M', 10);
-insert into room (roomName, roomSize, designID) values ('Bedroom', 'M', 10);
-insert into room (roomName, roomSize, designID) values ('Bedroom', 'M', 10);
-insert into room (roomName, roomSize, designID) values ('Bedroom', 'L', 11);
+insert into room (roomName, roomSize, designID) values ('Bathroom', 'S', 9);
 
-insert into room (roomName, roomSize, designID) values ('Living Room', 'M', 6);
-insert into room (roomName, roomSize, designID) values ('Dining Hall', 'S', 6);
-insert into room (roomName, roomSize, designID) values ('Kitchen', 'M', 10);
-insert into room (roomName, roomSize, designID) values ('Bathroom', 'S', 12);
-insert into room (roomName, roomSize, designID) values ('Bedroom', 'L', 13);
-insert into room (roomName, roomSize, designID) values ('Bedroom', 'L', 13);
+
 
 insert into hasRoom (projectID, roomID) values (1, 1);
 insert into hasRoom (projectID, roomID) values (1, 2);
@@ -254,48 +256,66 @@ insert into hasRoom (projectID, roomID) values (14, 14);
 insert into hasRoom (projectID, roomID) values (15, 9);
 insert into hasRoom (projectID, roomID) values (16, 5);
 
+insert into product (typeName, roomName, productCost, description) values ('Bed', 'Bedroom', 17183, 'Teal');
+insert into product (typeName, roomName, productCost, description) values ('Bed', 'Bedroom', 13526, 'Pink');
 insert into product (typeName, roomName, productCost, description) values ('Study Table', 'Bedroom', 14905, 'Purple');
 insert into product (typeName, roomName, productCost, description) values ('Study Table', 'Bedroom', 22896, 'Green');
 insert into product (typeName, roomName, productCost, description) values ('Study Table', 'Bedroom', 16270, 'Orange');
-insert into product (typeName, roomName, productCost, description) values ('Bed', 'Bedroom', 17183, 'Teal');
-insert into product (typeName, roomName, productCost, description) values ('Bed', 'Bedroom', 13526, 'Pink');
+
 insert into product (typeName, roomName, productCost, description) values ('Tile', 'Bathroom', 12262, 'Goldenrod');
 insert into product (typeName, roomName, productCost, description) values ('Bathtub', 'Bathroom', 21665, 'Crimson');
 insert into product (typeName, roomName, productCost, description) values ('Tap', 'Bathroom', 15325, 'Green');
 insert into product (typeName, roomName, productCost, description) values ('Tap', 'Bathroom', 21819, 'Blue');
 insert into product (typeName, roomName, productCost, description) values ('Shower', 'Bathroom', 10686, 'Khaki');
+
 insert into product (typeName, roomName, productCost, description) values ('Exhaust Fan', 'Kitchen', 12149, 'Red');
 insert into product (typeName, roomName, productCost, description) values ('Chimney', 'Kitchen', 13887, 'Crimson');
 insert into product (typeName, roomName, productCost, description) values ('Oven', 'Kitchen', 22420, 'Turquoise');
+
 insert into product (typeName, roomName, productCost, description) values ('Dining table', 'Dining Hall', 25594, 'Crimson');
 insert into product (typeName, roomName, productCost, description) values ('Dining table', 'Dining Hall', 27014, 'Turquoise');
+
 insert into product (typeName, roomName, productCost, description) values ('TV Stand', 'Living Hall', 17483, 'Turquoise');
 insert into product (typeName, roomName, productCost, description) values ('Sofa', 'Living Hall', 20860, 'Pink');
 insert into product (typeName, roomName, productCost, description) values ('Teapoy', 'Living Hall', 22373, 'Red');
 insert into product (typeName, roomName, productCost, description) values ('Teapoy', 'Living Hall', 17933, 'Turquoise');
 insert into product (typeName, roomName, productCost, description) values ('TV Stand', 'Living Hall', 17234, 'Violet');
 
-insert into designIncludesProducts (designID, productID) values (3, 2);
-insert into designIncludesProducts (designID, productID) values (15, 13);
-insert into designIncludesProducts (designID, productID) values (19, 1);
-insert into designIncludesProducts (designID, productID) values (1, 9);
-insert into designIncludesProducts (designID, productID) values (3, 13);
-insert into designIncludesProducts (designID, productID) values (11, 20);
-insert into designIncludesProducts (designID, productID) values (9, 4);
-insert into designIncludesProducts (designID, productID) values (14, 10);
-insert into designIncludesProducts (designID, productID) values (5, 15);
-insert into designIncludesProducts (designID, productID) values (19, 11);
-insert into designIncludesProducts (designID, productID) values (4, 13);
-insert into designIncludesProducts (designID, productID) values (8, 15);
-insert into designIncludesProducts (designID, productID) values (1, 12);
+insert into designIncludesProducts (designID, productID) values (1,1);
+insert into designIncludesProducts (designID, productID) values (2, 2);
+insert into designIncludesProducts (designID, productID) values (4, 3);
+insert into designIncludesProducts (designID, productID) values (5, 4);
+insert into designIncludesProducts (designID, productID) values (2, 5);
+insert into designIncludesProducts (designID, productID) values (1, 1);
+insert into designIncludesProducts (designID, productID) values (4, 2);
+insert into designIncludesProducts (designID, productID) values (3, 3);
+insert into designIncludesProducts (designID, productID) values (3, 4);
+
+insert into designIncludesProducts (designID, productID) values (19, 16);
+insert into designIncludesProducts (designID, productID) values (19, 18);
+insert into designIncludesProducts (designID, productID) values (20, 18);
+insert into designIncludesProducts (designID, productID) values (20, 17);
+insert into designIncludesProducts (designID, productID) values (16, 18);
+insert into designIncludesProducts (designID, productID) values (16, 16);
+
+insert into designIncludesProducts (designID, productID) values (14, 14);
+insert into designIncludesProducts (designID, productID) values (15, 15);
+insert into designIncludesProducts (designID, productID) values (15, 14);
+insert into designIncludesProducts (designID, productID) values (14, 15);
+
+insert into designIncludesProducts (designID, productID) values (13, 12);
+insert into designIncludesProducts (designID, productID) values (13, 11);
+insert into designIncludesProducts (designID, productID) values (12, 11);
+insert into designIncludesProducts (designID, productID) values (12, 13);
 insert into designIncludesProducts (designID, productID) values (11, 13);
-insert into designIncludesProducts (designID, productID) values (18, 7);
-insert into designIncludesProducts (designID, productID) values (3, 5);
-insert into designIncludesProducts (designID, productID) values (5, 5);
-insert into designIncludesProducts (designID, productID) values (20, 5);
-insert into designIncludesProducts (designID, productID) values (5, 18);
-insert into designIncludesProducts (designID, productID) values (11, 1);
-insert into designIncludesProducts (designID, productID) values (10, 13);
+insert into designIncludesProducts (designID, productID) values (11, 12);
+
+
+insert into designIncludesProducts (designID, productID) values (6,6);
+insert into designIncludesProducts (designID, productID) values (6,7);
+insert into designIncludesProducts (designID, productID) values (7, 7);
+insert into designIncludesProducts (designID, productID) values (10,10);
+insert into designIncludesProducts (designID, productID) values (10,7);
 
 insert into payment (costPrice , sellingPrice, advancePaid, profit, projectID) values (50000,65000,25000,15000, 1);
 insert into payment (costPrice , sellingPrice, advancePaid, profit, projectID) values (100000,150000,30000,50000, 2);
