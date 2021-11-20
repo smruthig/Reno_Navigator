@@ -25,7 +25,7 @@ const ProjectDetails:React.FC = () => {
 	const {project,site,customer,customerFeedback, designer, contractor, des_for_rooms} = data;
 	
 	return (
-	<Box mx="auto" mt="4%" w="50rem">
+	<Box mx="auto" mt="4%" w="60rem">
 		<Heading>Project {projectId}</Heading>
 		<Text>Start Date: {project.startdate}</Text>
 		<Text>Estimated End Date: {project.estimatedenddate}</Text>
