@@ -18,7 +18,6 @@ insert into siteDetails (houseNo, street, pincode, city, state, length, breadth)
 insert into siteDetails (houseNo, street, pincode, city, state, length, breadth) values (7, '852 Vermont Road', 600048, 'Madurai', 'Tamil Nadu', 62, 85);
 insert into siteDetails (houseNo, street, pincode, city, state, length, breadth) values (1, '87593 Coolidge Lane', 600047, 'Selam', 'Tamil Nadu', 58, 51);
 insert into siteDetails (houseNo, street, pincode, city, state, length, breadth) values (9, '62 Cottonwood Trail', 600007, 'Chennai', 'Tamil Nadu', 75, 44);
-insert into siteDetails (houseNo, street, pincode, city, state, length, breadth) values (2, '722 Kennedy Circle', 600091, 'Madurai', 'Tamil Nadu', 53, 41);
 
 insert into customer (customerName, customerPhNo, customerEmailID, customerAddress) values ('Chrissie Abrashkov', '3807494004', 'cabrashkov0@shinystat.com', '2348 Mosinee Terrace');
 insert into customer (customerName, customerPhNo, customerEmailID, customerAddress) values ('Cecile Larver', '9018134954', 'clarver1@cnet.com', '356 Corben Drive');
