@@ -66,12 +66,10 @@ def get_project_by_id(employee_id,project_id):
 		contractor = cursor.fetchall()
 
 		# @TODO Rooms & Designs in project
-#		SELECT r.roomname, r.roomsize, p.productid, p.typename, p.roomname, p.productcost, p.description FROM room AS r, product AS p 
-# 		WHERE r.designid IN (SELECT designid FROM room WHERE roomid IN (select roomid from hasRoom where projectid = {project_id})) AND
-# 		p.productid IN (SELECT designIncludesProducts.productid FROM designIncludesProducts WHERE designid = r.designid);
-
+		cursor.execute(f"SELECT r.roomname, r.roomsize, p.productid, p.typename, p.roomname, p.productcost, p.description FROM room AS r, product AS p WHERE r.designid IN (SELECT designid FROM room WHERE roomid IN (select roomid from hasRoom where projectid = {project_id})) AND p.productid IN (SELECT designIncludesProducts.productid FROM designIncludesProducts WHERE designid = r.designid);")
+		des_for_rooms = cursor.fetchall()
 		
-		return jsonify(project=project,site=site,customer=customer,customerFeedback=customer_feedback, designer=designer, contractor=contractor)
+		return jsonify(project=project,site=site,customer=customer,customerFeedback=customer_feedback, designer=designer, contractor=contractor, des_for_rooms=des_for_rooms)
 	except(Exception, psycopg2.Error) as error:
 		print(error)
 		return Response(error,status=500)
@@ -79,19 +77,16 @@ def get_project_by_id(employee_id,project_id):
 		# cursor.close()
 
 # gets all customerids for creating a project form
-@projectManager_blueprint.route("/getallcustomers")
+@projectManager_blueprint.route('/projectmanager/getallcustomerids')
 def get_all_customer_ids():
 	try:
-		cursor = g.db.cursor(cursor_factory=RealDictCursor)
-
-		cursor.execute(f"SELECT customerid,customername FROM customer ORDER BY customername;")	
-		customer = cursor.fetchall()
-		return jsonify(customer)
+		# @TODO return all customer ids
+		return jsonify()
 	except(Exception, psycopg2.Error) as error:
 		print(error)
-		return Response(error,status=500)
-	finally:
-		cursor.close()
+		return Response(status=500)
+	# finally:
+		# cursor.close()
 
 # function called before request is closed
 @projectManager_blueprint.teardown_app_request
