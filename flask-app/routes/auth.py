@@ -22,7 +22,10 @@ def login():
 			if res["password"] == password:
 				cursor.execute(f"SELECT employeeid, designation FROM employee WHERE empemailid=\'{email_id}\'")	
 				res = cursor.fetchone()
-				return jsonify(message="success",employeeId=res["employeeid"],designation=res["designation"])
+				if res["designation"]!='Sr Designer' and res["designation"]!='Jr Designer':
+					return jsonify(message="success",employeeId=res["employeeid"],designation=res["designation"])
+				else:
+					return jsonify(message="success",employeeId=res["employeeid"],designation="designer")
 			else:
 				return jsonify(message="incorrect password")
 		else:
@@ -47,7 +50,10 @@ def signup():
 		g.db.commit()
 		cursor.execute(f"SELECT employeeid, designation FROM employee WHERE empemailid=\'{email_id}\'")	
 		res = cursor.fetchone()
-		return jsonify(message="success",employeeId=res["employeeid"],designation=res["designation"])
+		if res["designation"]!='Sr Designer' and res["designation"]!='Jr Designer':
+			return jsonify(message="success",employeeId=res["employeeid"],designation=res["designation"])
+		else:
+			return jsonify(message="success",employeeId=res["employeeid"],designation="designer")
 	except(Exception, psycopg2.Error) as error:
 		print(error)
 		return Response(status=500)

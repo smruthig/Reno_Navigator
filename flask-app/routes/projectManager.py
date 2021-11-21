@@ -13,6 +13,7 @@ def get_projects(employee_id):
 		print("!")
 		cursor.execute(f"SELECT p.projectID from project as p WHERE p.projectID IN (SELECT projectID from managedBy as m WHERE m.employeeID={employee_id});")
 		res = cursor.fetchall()
+
 		if res:
 			# resjson = json.dumps(res,indent=4, sort_keys=True, default=str)
 			return jsonify(res)
@@ -61,6 +62,15 @@ def post_project(employee_id):
 		cursor = g.db.cursor(cursor_factory=RealDictCursor)
 		cursor.execute(f"insert into managedBy(projectid, employeeid) select max(projectid), {employee_id} from project;")
 		g.db.commit()
+		cursor = g.db.cursor(cursor_factory=RealDictCursor)
+		cursor.execute(f"select max(projectid) from project;")
+		c = cursor.fetchone()
+		new_proj_id = c['max']
+		for des in designerlist:
+			cursor = g.db.cursor(cursor_factory=RealDictCursor)
+			cursor.execute(f"insert into designedBy(projectid, employeeid) values({new_proj_id}, {des});")
+			g.db.commit()		
+
 
 		return jsonify(message="success")
 	except(Exception, psycopg2.Error) as error:
