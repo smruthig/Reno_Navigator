@@ -1,17 +1,20 @@
 import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
-import { Box, Heading } from "@chakra-ui/layout";
+import { Box, Heading, HStack } from "@chakra-ui/layout";
 import {
+    Checkbox,
+    CheckboxGroup,
     Modal,
     ModalBody,
     ModalCloseButton,
-    ModalContent, ModalHeader,
+    ModalContent,
+    ModalHeader,
     ModalOverlay,
     NumberInput,
     NumberInputField,
     Select,
-    useDisclosure
+    useDisclosure,
 } from "@chakra-ui/react";
 import { AxiosResponse } from "axios";
 import { useStoreState } from "easy-peasy";
@@ -44,21 +47,30 @@ interface AddCustomerFormProps {
 
 const AddProjectForm: React.FC = () => {
     const { handleSubmit, register } = useForm<AddProjectFormProps>();
-    const { handleSubmit:handleSubmitModal, register:registerModal } = useForm<AddCustomerFormProps>();
+    const { handleSubmit: handleSubmitModal, register: registerModal } =
+        useForm<AddCustomerFormProps>();
     const navigate = useNavigate();
     const employee = useStoreState((state: any) => state.employee);
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const [startDate, setStartDate] = useState(new Date());
     const [estimatedEndDate, setEstimatedEndDate] = useState(new Date());
-    const [customer,setCustomer] = useState<any>([]);
+    const [customer, setCustomer] = useState<any>([]);
+    const [designers, setDesigners] = useState<any>([]);
 
     const { isLoading } = useQuery("get-all-customers", () => {
-        return axios
+        axios
             .get(`/getallcustomers?designation=${employee.designation}`)
             .then(({ data }) => {
-                setCustomer(data)
-                return data;
+                setCustomer(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        axios
+            .get(`/projectmanager/getfreedesigners=${employee.designation}`)
+            .then(({ data }) => {
+                setDesigners(data);
             })
             .catch((err) => {
                 console.log(err);
@@ -83,17 +95,20 @@ const AddProjectForm: React.FC = () => {
         }
     }
 
-    async function createCustomer(formdata:any) {
+    async function createCustomer(formdata: any) {
         try {
             console.log(formdata);
-            const { data }: AxiosResponse = await axios.post(`/createcustomer?designation=${employee.designation}`, formdata);
-            setCustomer((customer:any)=>{
+            const { data }: AxiosResponse = await axios.post(
+                `/createcustomer?designation=${employee.designation}`,
+                formdata
+            );
+            setCustomer((customer: any) => {
                 return [...customer, data];
             });
             onClose();
         } catch (err) {
             console.log(err);
-        } 
+        }
     }
 
     return (
@@ -112,7 +127,7 @@ const AddProjectForm: React.FC = () => {
                     <FormLabel>Pincode</FormLabel>
                     <NumberInput max={999999}>
                         <NumberInputField
-                            {...register('pincode')}
+                            {...register("pincode")}
                             placeholder="pincode"
                         />
                     </NumberInput>
@@ -166,7 +181,7 @@ const AddProjectForm: React.FC = () => {
                     />
                 </FormControl>
 
-                <FormControl id="designation" isRequired>
+                <FormControl id="customer-id" isRequired>
                     <FormLabel>Customer id</FormLabel>
                     {customer.length > 0 && (
                         <Select
@@ -194,6 +209,20 @@ const AddProjectForm: React.FC = () => {
                 <Button my="5" display="block" onClick={onOpen}>
                     Add Customer
                 </Button>
+                <FormControl id="designers" isRequired>
+                    <FormLabel>Designers</FormLabel>
+                    {designers.map((value:any, index:any) => {
+                        return (
+                            <CheckboxGroup>
+                                <HStack>
+                                    <Checkbox value="" onChange={(e)=>{console.log(e.target.checked)}}>Naruto</Checkbox>
+                                    <Checkbox value="">Sasuke</Checkbox>
+                                    <Checkbox value="">kakashi</Checkbox>
+                                </HStack>
+                            </CheckboxGroup>
+                        );
+                    })}
+                </FormControl>
                 <Button my="5" type="submit">
                     Submit
                 </Button>
@@ -207,21 +236,23 @@ const AddProjectForm: React.FC = () => {
                         <form onSubmit={handleSubmitModal(createCustomer)}>
                             <FormControl id="customer name" isRequired>
                                 <FormLabel>Customer Name</FormLabel>
-                                <Input {...registerModal('customername')} /> 
+                                <Input {...registerModal("customername")} />
                             </FormControl>
                             <FormControl id="customer ph no" isRequired>
                                 <FormLabel>Customer Phone Number</FormLabel>
-                                <Input {...registerModal("customerphoneno")}/> 
+                                <Input {...registerModal("customerphoneno")} />
                             </FormControl>
                             <FormControl id="customer email" isRequired>
                                 <FormLabel>Customer Email</FormLabel>
-                                <Input {...registerModal('customeremailid')}/>
+                                <Input {...registerModal("customeremailid")} />
                             </FormControl>
                             <FormControl id="customer address" isRequired>
                                 <FormLabel>Customer Address</FormLabel>
-                                <Input {...registerModal('customeraddress')}/>
+                                <Input {...registerModal("customeraddress")} />
                             </FormControl>
-                            <Button variant="ghost" type="submit">Create</Button>
+                            <Button variant="ghost" type="submit">
+                                Create
+                            </Button>
                         </form>
                     </ModalBody>
                 </ModalContent>

@@ -81,8 +81,8 @@ def get_project_by_id(employee_id,project_id):
 	except(Exception, psycopg2.Error) as error:
 		print(error)
 		return Response(error,status=500)
-	# finally:
-		# cursor.close()
+	finally:
+		cursor.close()
 
 # function called before request is closed
 @projectmanager_blueprint.teardown_app_request
