@@ -5,7 +5,7 @@ Grant select on employee, product, empPhNo, customer, customerFeedback, design, 
 Grant insert on customer to projectmanager;
 Grant usage, select on customer_customerid_seq, project_projectid_seq, project_siteid_seq, sitedetails_siteid_seq to projectmanager;
 
-GRANT select on project, hasRoom, product, siteDetails to designer;
+GRANT select on project, hasRoom, product, siteDetails, designedBy to designer;
 GRANT all on design, designIncludesProducts to designer;
 Grant select, update(designID) on room to designer;
 

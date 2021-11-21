@@ -3,6 +3,7 @@ from flask_cors import CORS
 from routes.auth import auth_blueprint
 from routes.customer import customer_blueprint
 from routes.projectManager import projectmanager_blueprint
+from routes.designer import designer_blueprint
 import psycopg2
 
 app = Flask(__name__)
@@ -16,7 +17,6 @@ def create_connection():
 		designation = request.args.get('designation')
 		if 'db' not in g:
 			g.db = psycopg2.connect(dbname="hd", user=designation, password="1234",host="127.0.0.1")
-			#g.db = psycopg2.connect(dbname="hd", user="projectmanager", password="1234",host="127.0.0.1")
 	except (Exception, psycopg2.Error) as error:
 		print("Could not create connection:", error)
 
@@ -31,6 +31,9 @@ app.register_blueprint(auth_blueprint)
 app.register_blueprint(projectmanager_blueprint)
 
 app.register_blueprint(customer_blueprint)
+
+# sub route for /designer
+app.register_blueprint(designer_blueprint)
 
 # function called before request is closed
 @app.teardown_appcontext
