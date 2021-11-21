@@ -24,6 +24,25 @@ def get_projects(employee_id):
 	finally:
 		cursor.close()
 
+# gets projectid of projects managed by given an employee id
+@projectmanager_blueprint.route('/projectmanager/getfreedesigners')
+def get_free_designers():
+	try:
+		cursor = g.db.cursor(cursor_factory=RealDictCursor)
+		
+		cursor.execute(f"select employeeid, empname from employee where (designation='Sr Designer' or designation='Jr Designer') and employeeid not in (select employeeid from designedBy group by employeeid having count(employeeid)>2);")
+		res = cursor.fetchall()
+		if res:
+			return jsonify(res)
+		else:
+			return jsonify(message="No free designers")
+	except(Exception, psycopg2.Error) as error:
+		print(error)
+		return Response(error,status=500)
+	finally:
+		cursor.close()
+
+
 # creates a project also add record in managed by 
 @projectmanager_blueprint.route('/projectmanager/<string:employee_id>',methods=['POST'])
 def post_project(employee_id):
@@ -31,7 +50,7 @@ def post_project(employee_id):
 		data = request.json
 		print(data)
 
-		hno, street, pin, city, state, len, bred, custid, sd, ed  = itemgetter('houseNo', 'street', 'pincode','city', 'state', 'length', 'breadth', 'customerid','startDate','estimatedEndDate')(data)
+		hno, street, pin, city, state, len, bred, custid, sd, ed, designerlist  = itemgetter('houseNo', 'street', 'pincode','city', 'state', 'length', 'breadth', 'customerid','startDate','estimatedEndDate', 'designerlist')(data)
 		
 		cursor = g.db.cursor(cursor_factory=RealDictCursor)
 		cursor.execute(f"INSERT INTO siteDetails (houseno, street, pincode, city, state, length, breadth) values(\'{hno}\',\'{street}\',\'{pin}\',\'{city}\',\'{state}\',\'{len}\',\'{bred}\');")
