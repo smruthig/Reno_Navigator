@@ -285,7 +285,7 @@ insert into designIncludesProducts (designID, productID) values (2, 2);
 insert into designIncludesProducts (designID, productID) values (4, 3);
 insert into designIncludesProducts (designID, productID) values (5, 4);
 insert into designIncludesProducts (designID, productID) values (2, 5);
-insert into designIncludesProducts (designID, productID) values (1, 2);
+insert into designIncludesProducts (designID, productID) values (1, 3);
 insert into designIncludesProducts (designID, productID) values (4, 2);
 insert into designIncludesProducts (designID, productID) values (3, 3);
 insert into designIncludesProducts (designID, productID) values (3, 4);
