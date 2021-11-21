@@ -1,7 +1,6 @@
 import {
     Box, Heading, Table as ChakraTable, Tbody, Td, Th, Thead, Tr
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 
 interface TableProps {
     heading: string;

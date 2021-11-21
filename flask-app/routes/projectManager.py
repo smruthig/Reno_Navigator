@@ -62,7 +62,7 @@ def post_project(employee_id):
 		cursor.execute(f"insert into managedBy(projectid, employeeid) select max(projectid), {employee_id} from project;")
 		g.db.commit()
 
-		return "hi"
+		return jsonify(message="success")
 	except(Exception, psycopg2.Error) as error:
 		print(error)
 		return Response(error,status=500)
