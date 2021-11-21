@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
-import { Box, Heading, HStack } from "@chakra-ui/layout";
+import { Box, Heading, HStack, VStack } from "@chakra-ui/layout";
 import {
     Checkbox,
     CheckboxGroup,
@@ -57,6 +57,7 @@ const AddProjectForm: React.FC = () => {
     const [estimatedEndDate, setEstimatedEndDate] = useState(new Date());
     const [customer, setCustomer] = useState<any>([]);
     const [designers, setDesigners] = useState<any>([]);
+    const [selectedDesigners, setSelectedDesigners] = useState<any>([]);
 
     const { isLoading } = useQuery("get-all-customers", () => {
         axios
@@ -68,7 +69,7 @@ const AddProjectForm: React.FC = () => {
                 console.log(err);
             });
         axios
-            .get(`/projectmanager/getfreedesigners=${employee.designation}`)
+            .get(`/projectmanager/getfreedesigners?designation=${employee.designation}`)
             .then(({ data }) => {
                 setDesigners(data);
             })
@@ -87,6 +88,7 @@ const AddProjectForm: React.FC = () => {
                     ...formdata,
                     startDate: formatDate(startDate),
                     estimatedEndDate: formatDate(estimatedEndDate),
+                    designerlist: selectedDesigners
                 }
             );
             navigate(-1);
@@ -210,18 +212,17 @@ const AddProjectForm: React.FC = () => {
                     Add Customer
                 </Button>
                 <FormControl id="designers" isRequired>
-                    <FormLabel>Designers</FormLabel>
-                    {designers.map((value:any, index:any) => {
-                        return (
-                            <CheckboxGroup>
-                                <HStack>
-                                    <Checkbox value="" onChange={(e)=>{console.log(e.target.checked)}}>Naruto</Checkbox>
-                                    <Checkbox value="">Sasuke</Checkbox>
-                                    <Checkbox value="">kakashi</Checkbox>
-                                </HStack>
-                            </CheckboxGroup>
-                        );
-                    })}
+                    <FormLabel>Available Designers</FormLabel>
+                    <CheckboxGroup onChange={(value)=>{
+                        // console.log(value)
+                        setSelectedDesigners(value);
+                    }}>
+                    <VStack align='flex-start'>
+                        {designers.map(({employeeid,empname}:any, index:any) => {
+                            return <Checkbox key={index} value={`${employeeid}`}>{empname}</Checkbox>
+                        })}
+                    </VStack>
+                    </CheckboxGroup>
                 </FormControl>
                 <Button my="5" type="submit">
                     Submit

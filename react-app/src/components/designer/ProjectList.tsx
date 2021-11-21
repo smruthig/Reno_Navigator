@@ -31,9 +31,6 @@ const ProjectListDes: React.FC = () => {
         <Box mx="auto" my="auto" w="50rem" h="90rem" p="5rem">
 			<Flex justifyContent='space-between'>
 				<Heading>My Projects</Heading>
-				<Button onClick={()=>{
-					navigate('/addproject');
-				}}>Add Project</Button>
 			</Flex>
 			{
 				projects.map((proj:any)=>{
