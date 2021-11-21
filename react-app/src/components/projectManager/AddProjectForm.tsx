@@ -25,6 +25,7 @@ import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
+import { errorToast } from "../../utils/errorToast";
 import formatDate from "../../utils/formatDate";
 
 interface AddProjectFormProps {
@@ -94,6 +95,7 @@ const AddProjectForm: React.FC = () => {
             navigate(-1);
         } catch (err) {
             console.log(err);
+            errorToast("Please fill fields correctly")
         }
     }
 
@@ -110,6 +112,7 @@ const AddProjectForm: React.FC = () => {
             onClose();
         } catch (err) {
             console.log(err);
+            errorToast("Please fill customer fields correctly")
         }
     }
 
