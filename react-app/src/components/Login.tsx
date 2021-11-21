@@ -61,7 +61,7 @@ export const Login: React.FC = () => {
           </Button>
         </Flex>
         <Text hidden={hidden} color="red">
-          Incorrect username or password
+          Incorrect password
         </Text>
       </form>
     </Box>
