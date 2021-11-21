@@ -110,7 +110,12 @@ const AddProjectForm: React.FC = () => {
                 </FormControl>
                 <FormControl id="Pincode" isRequired>
                     <FormLabel>Pincode</FormLabel>
-                    <Input {...register("pincode")} placeholder="address" />
+                    <NumberInput max={999999}>
+                        <NumberInputField
+                            {...register('pincode')}
+                            placeholder="pincode"
+                        />
+                    </NumberInput>
                 </FormControl>
                 <FormControl id="City" isRequired>
                     <FormLabel>City</FormLabel>
