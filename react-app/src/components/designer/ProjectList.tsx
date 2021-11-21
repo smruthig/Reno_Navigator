@@ -12,7 +12,7 @@ const ProjectListDes: React.FC = () => {
 	const navigate = useNavigate();
 	const [projects,setProjects] = useState([]);
 
-	const {isLoading} = useQuery('projects-list',()=>{
+	const {isLoading} = useQuery('designer-projects-list',()=>{
 			return axios.get(`/designer/${employee.employeeId}?designation=${employee.designation}`)
 			.then(({data})=>{
 				if(data.message==="no projects")
