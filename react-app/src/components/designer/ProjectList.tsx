@@ -2,7 +2,7 @@ import { Box, Flex, Heading } from "@chakra-ui/layout";
 import { useStoreState } from "easy-peasy";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../../utils/axios";
 
 const ProjectListDes: React.FC = () => {
