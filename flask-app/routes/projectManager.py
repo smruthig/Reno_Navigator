@@ -31,8 +31,17 @@ def post_project(employee_id):
 		data = request.json
 		print(data)
 
-		# @TODO creates a project also add record in managed by and other tables
-		# @TODO insert into project, managedBY, siteDetails table
+		hno, street, pin, city, state, len, bred, custid, sd, ed  = itemgetter('houseNo', 'street', 'pincode','city', 'state', 'length', 'breadth', 'customerid','startDate','estimatedEndDate')(data)
+		
+		cursor = g.db.cursor(cursor_factory=RealDictCursor)
+		cursor.execute(f"INSERT INTO siteDetails (houseno, street, pincode, city, state, length, breadth) values(\'{hno}\',\'{street}\',\'{pin}\',\'{city}\',\'{state}\',\'{len}\',\'{bred}\');")
+		g.db.commit()
+		cursor = g.db.cursor(cursor_factory=RealDictCursor)
+		cursor.execute(f"INSERT INTO project (customerid, startdate, estimatedenddate) values(\'{custid}\',\'{sd}\',\'{ed}\');")
+		g.db.commit()
+		cursor = g.db.cursor(cursor_factory=RealDictCursor)
+		cursor.execute(f"insert into managedBy(projectid, employeeid) select max(projectid), {employee_id} from project;")
+		g.db.commit()
 
 		return "hi"
 	except(Exception, psycopg2.Error) as error:

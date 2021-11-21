@@ -1,6 +1,6 @@
 create table project(
 	projectID serial,
-	siteID int not null,
+	siteID serial not null,
 	customerID int not null,
 	startDate date,
 	estimatedEndDate date check(estimatedEndDate > startDate),

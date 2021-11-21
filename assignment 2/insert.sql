@@ -18,7 +18,6 @@ insert into siteDetails (houseNo, street, pincode, city, state, length, breadth)
 insert into siteDetails (houseNo, street, pincode, city, state, length, breadth) values (7, '852 Vermont Road', 600048, 'Madurai', 'Tamil Nadu', 62, 85);
 insert into siteDetails (houseNo, street, pincode, city, state, length, breadth) values (1, '87593 Coolidge Lane', 600047, 'Selam', 'Tamil Nadu', 58, 51);
 insert into siteDetails (houseNo, street, pincode, city, state, length, breadth) values (9, '62 Cottonwood Trail', 600007, 'Chennai', 'Tamil Nadu', 75, 44);
-insert into siteDetails (houseNo, street, pincode, city, state, length, breadth) values (2, '722 Kennedy Circle', 600091, 'Madurai', 'Tamil Nadu', 53, 41);
 
 insert into customer (customerName, customerPhNo, customerEmailID, customerAddress) values ('Chrissie Abrashkov', '3807494004', 'cabrashkov0@shinystat.com', '2348 Mosinee Terrace');
 insert into customer (customerName, customerPhNo, customerEmailID, customerAddress) values ('Cecile Larver', '9018134954', 'clarver1@cnet.com', '356 Corben Drive');
@@ -41,26 +40,26 @@ insert into customer (customerName, customerPhNo, customerEmailID, customerAddre
 insert into customer (customerName, customerPhNo, customerEmailID, customerAddress) values ('Rosalinda Boord', '8514148789', 'rboordi@imageshack.us', '57243 Fuller Place');
 insert into customer (customerName, customerPhNo, customerEmailID, customerAddress) values ('Phaedra Monk', '7342930039', 'pmonkj@creativecommons.org', '6041 Nobel Park');
 
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (1, 1, '2020/11/05', '2023/04/01');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (2, 2, '2021/03/13', '2022/02/06');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (3, 3, '2021/10/07', '2023/01/22');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (4, 4, '2020/10/11', '2023/05/23');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (5, 5, '2021/01/16', '2023/08/17');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (6, 6, '2021/05/27', '2022/01/31');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (7, 7, '2021/05/29', '2023/08/26');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (8, 8, '2021/04/03', '2023/06/15');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (9, 9, '2021/03/26', '2022/12/01');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (10, 10, '2021/08/01', '2023/07/13');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (11, 11, '2021/07/18', '2022/11/12');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (12, 12, '2021/03/23', '2022/07/03');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (13, 13, '2021/03/12', '2022/11/17');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (14, 14, '2021/08/11', '2022/10/31');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (15, 15, '2020/12/16', '2022/09/25');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (16, 16, '2021/08/08', '2022/02/18');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (17, 17, '2020/11/03', '2022/03/02');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (18, 18, '2020/11/14', '2023/04/16');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (19, 19, '2021/08/24', '2022/09/26');
-insert into project (siteID, customerID, startDate, estimatedEndDate) values (20, 20, '2021/03/26', '2022/05/26');
+insert into project (customerID, startDate, estimatedEndDate) values (1, '2020/11/05', '2023/04/01');
+insert into project (customerID, startDate, estimatedEndDate) values (2, '2021/03/13', '2022/02/06');
+insert into project (customerID, startDate, estimatedEndDate) values (3, '2021/10/07', '2023/01/22');
+insert into project (customerID, startDate, estimatedEndDate) values (4, '2020/10/11', '2023/05/23');
+insert into project (customerID, startDate, estimatedEndDate) values (5, '2021/01/16', '2023/08/17');
+insert into project (customerID, startDate, estimatedEndDate) values (6, '2021/05/27', '2022/01/31');
+insert into project (customerID, startDate, estimatedEndDate) values (7, '2021/05/29', '2023/08/26');
+insert into project (customerID, startDate, estimatedEndDate) values (8, '2021/04/03', '2023/06/15');
+insert into project (customerID, startDate, estimatedEndDate) values (9, '2021/03/26', '2022/12/01');
+insert into project (customerID, startDate, estimatedEndDate) values ( 10, '2021/08/01', '2023/07/13');
+insert into project (customerID, startDate, estimatedEndDate) values ( 11, '2021/07/18', '2022/11/12');
+insert into project (customerID, startDate, estimatedEndDate) values ( 12, '2021/03/23', '2022/07/03');
+insert into project (customerID, startDate, estimatedEndDate) values ( 13, '2021/03/12', '2022/11/17');
+insert into project (customerID, startDate, estimatedEndDate) values ( 14, '2021/08/11', '2022/10/31');
+insert into project (customerID, startDate, estimatedEndDate) values ( 15, '2020/12/16', '2022/09/25');
+insert into project (customerID, startDate, estimatedEndDate) values ( 16, '2021/08/08', '2022/02/18');
+insert into project (customerID, startDate, estimatedEndDate) values ( 17, '2020/11/03', '2022/03/02');
+insert into project (customerID, startDate, estimatedEndDate) values ( 18, '2020/11/14', '2023/04/16');
+insert into project (customerID, startDate, estimatedEndDate) values ( 19, '2021/08/24', '2022/09/26');
+insert into project (customerID, startDate, estimatedEndDate) values ( 20, '2021/03/26', '2022/05/26');
 
 insert into employee (empname,empEmailID, empAddress, designation, salary, dob, joinDate) values ('fdiprose','fdiprosej@yelp.com', '61 Commercial Place', 'CEO', 367622, '1962/09/25', '2019/10/05');
 insert into employee (empname,empEmailID, empAddress, designation, salary, dob, joinDate) values ('dpllui','dpllui@w3.org', '91293 Sutteridge Drive', 'VP', 272084, '1992/06/27', '2012/03/13');
