@@ -1,15 +1,12 @@
-import { Button } from "@chakra-ui/button";
-import { Box, Flex, Heading} from "@chakra-ui/layout";
+import { Box, Flex, Heading } from "@chakra-ui/layout";
 import { useStoreState } from "easy-peasy";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
-import {Link} from "react-router-dom"
 
 const ProjectListDes: React.FC = () => {
     const employee = useStoreState((state: any) => state.employee);
-	const navigate = useNavigate();
 	const [projects,setProjects] = useState([]);
 
 	const {isLoading} = useQuery('designer-projects-list',()=>{

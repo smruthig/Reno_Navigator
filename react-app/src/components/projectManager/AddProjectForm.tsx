@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
-import { Box, Heading, HStack, VStack } from "@chakra-ui/layout";
+import { Box, Heading, VStack } from "@chakra-ui/layout";
 import {
     Checkbox,
     CheckboxGroup,
@@ -14,7 +14,7 @@ import {
     NumberInput,
     NumberInputField,
     Select,
-    useDisclosure,
+    useDisclosure
 } from "@chakra-ui/react";
 import { AxiosResponse } from "axios";
 import { useStoreState } from "easy-peasy";

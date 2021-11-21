@@ -22,7 +22,7 @@ const DesignerProjectDetails:React.FC = () => {
 	if(isLoading || data===undefined)
 		return null;
 
-	const {project,site,customer,customerFeedback, designer, contractor, des_for_rooms} = data;
+	const {project, site, des_for_rooms} = data;
 	
 	return (
 	<Box mx="auto" mt="4%" w="60rem">
@@ -30,7 +30,6 @@ const DesignerProjectDetails:React.FC = () => {
 		<Text>Start Date: {project.startdate}</Text>
 		<Text>Estimated End Date: {project.estimatedenddate}</Text>
 		<Table heading="Site Details" data={site} tableHeadings={['houseno', 'street', 'pincode', 'city', 'state', 'length', 'breadth']}/>
-		<Table heading="Designers" data={designer} tableHeadings={['employeeid', 'empname', 'empemailid']}/>
 		<Table heading="Design" data={des_for_rooms} tableHeadings={['roomid', 'roomname', 'roomsize', 'designid', 'productid', 'typename', 'productcost', 'description']}/>
 	</Box>
 	)
