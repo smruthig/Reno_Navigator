@@ -1,5 +1,5 @@
 <p align="center">
-    <h1 align="center">RenoNavigator</h1>
+    <h1 align="center">Reno Navigator</h1>
 </p>
 <p align="center">
     <em><code>One platform to manage all your homemakeover magic!</code></em>
